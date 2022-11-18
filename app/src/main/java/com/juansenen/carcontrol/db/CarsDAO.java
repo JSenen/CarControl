@@ -8,6 +8,7 @@ import androidx.room.Transaction;
 import androidx.room.Update;
 
 import com.juansenen.carcontrol.domain.Cars;
+import com.juansenen.carcontrol.domain.CarsAndRevision;
 
 import java.util.List;
 
@@ -28,4 +29,6 @@ public interface CarsDAO {
 
     @Update
     void update(Cars cars);
+
+
 }

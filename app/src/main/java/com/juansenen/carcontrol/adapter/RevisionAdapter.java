@@ -36,6 +36,8 @@ public class RevisionAdapter extends RecyclerView.Adapter<RevisionAdapter.Revisi
     @Override
     public void onBindViewHolder(RevisionHolder holder, int position) {
         holder.txtkmrev.setText(revisionList.get(position).getKmrevision());
+        holder.mrkdone.setChecked(revisionList.get(position).isDone());
+        holder.mrkoil.setChecked(revisionList.get(position).isAceite());
 
         //TODO Fechas??
         //TODO Terminar

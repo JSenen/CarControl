@@ -12,8 +12,6 @@ public class Cars {
     @NonNull
     public long car_id;
     @ColumnInfo
-    public long rev_id;
-    @ColumnInfo
     public String register;
     @ColumnInfo
     public String trademark;
@@ -35,6 +33,22 @@ public class Cars {
         this.model = model;
         this.year = year;
         this.km = km;
+    }
+
+    public long getCar_id() {
+        return car_id;
+    }
+
+    public void setCar_id(long car_id) {
+        this.car_id = car_id;
+    }
+
+    public Revision getRevision() {
+        return revision;
+    }
+
+    public void setRevision(Revision revision) {
+        this.revision = revision;
     }
 
     public String getRegister() {

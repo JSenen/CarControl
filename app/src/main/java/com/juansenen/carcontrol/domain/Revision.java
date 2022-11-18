@@ -1,20 +1,18 @@
 package com.juansenen.carcontrol.domain;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
-import androidx.room.Embedded;
 import androidx.room.Entity;
-import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
-
-import java.time.LocalDateTime;
 
 @Entity
 public class Revision {
 
     @PrimaryKey(autoGenerate = true)
-    public long revision_id;
+    @NonNull
+    public long revId;
     @ColumnInfo
-    public long revision_registerId;
+    public long revCarId;
     @ColumnInfo
     public long fecha;
     @ColumnInfo
@@ -34,10 +32,10 @@ public class Revision {
     @ColumnInfo
     public boolean limpiaparabrisas;
 
-
-    public Revision(long fecha, boolean done, int kmrevision, boolean aceite,
+    public Revision(long revCarId, long fecha, boolean done, int kmrevision, boolean aceite,
                     boolean filtros, boolean ruedas, boolean discosfreno,
                     boolean anticongelante, boolean limpiaparabrisas) {
+        this.revCarId = revCarId;
         this.fecha = fecha;
         this.done = done;
         this.kmrevision = kmrevision;
@@ -49,20 +47,24 @@ public class Revision {
         this.limpiaparabrisas = limpiaparabrisas;
     }
 
-    public long getRevision_id() {
-        return revision_id;
+    public Revision() {
+
     }
 
-    public void setRevision_id(long revision_id) {
-        this.revision_id = revision_id;
+    public long getRevId() {
+        return revId;
     }
 
-    public long getRevision_registerId() {
-        return revision_registerId;
+    public void setRevId(long revId) {
+        this.revId = revId;
     }
 
-    public void setRevision_registerId(long revision_registerId) {
-        this.revision_registerId = revision_registerId;
+    public long getRevCarId() {
+        return revCarId;
+    }
+
+    public void setRevCarId(long revCarId) {
+        this.revCarId = revCarId;
     }
 
     public long getFecha() {

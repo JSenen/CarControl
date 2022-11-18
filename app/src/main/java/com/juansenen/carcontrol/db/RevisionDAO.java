@@ -20,7 +20,6 @@ public interface RevisionDAO {
     @Query("SELECT * FROM revision")
     List<Revision> getAll();
 
-
     @Insert
     void insert(Revision revision);
 

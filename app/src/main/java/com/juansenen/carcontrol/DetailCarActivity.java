@@ -4,8 +4,11 @@ import static com.juansenen.carcontrol.db.Constans.DATABASE_NAME;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
@@ -44,6 +47,18 @@ public class DetailCarActivity extends AppCompatActivity {
         txtdetregister.setText(car.getRegister());
 
 
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_back,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        return true;
     }
 
 }

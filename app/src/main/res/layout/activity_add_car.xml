@@ -8,8 +8,11 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <EditText
             android:id="@+id/edtxt_register"
@@ -17,7 +20,9 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Matricula"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:textColor="#009688"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/edtxt_trdmark"
@@ -55,14 +60,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/but_back"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:onClick="butBack"
-                android:text="Volver" />
 
             <Button
                 android:id="@+id/butAdd"

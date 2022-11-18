@@ -2,10 +2,15 @@ package com.juansenen.carcontrol;
 
 import static com.juansenen.carcontrol.db.Constans.DATABASE_NAME;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -20,9 +25,22 @@ public class AddCarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_car);
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_back,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        return true;
+    }
+
     public void butAdd(View view){
 
-        //TODO Comprobar graba en lista
         EditText ed_register = findViewById(R.id.edtxt_register);
         EditText ed_trdmark = findViewById(R.id.edtxt_trdmark);
         EditText ed_model = findViewById(R.id.edtxt_model);
@@ -54,8 +72,4 @@ public class AddCarActivity extends AppCompatActivity {
 
     }
 
-
-    public void butBack (View view){
-        onBackPressed();
-    }
 }

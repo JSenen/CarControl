@@ -1,13 +1,16 @@
 package com.juansenen.carcontrol.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.juansenen.carcontrol.DetailCarActivity;
 import com.juansenen.carcontrol.R;
 import com.juansenen.carcontrol.domain.Cars;
 
@@ -23,6 +26,13 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.CarsHolder> {
         this.carsList = carsList;
 
     }
+
+    @Override
+    public CarsHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.rcview_main_items, parent, false);
+        return new CarsHolder(view);
+    }
     @Override
     public void onBindViewHolder(CarsHolder holder, int position) {
         holder.txtregister.setText(carsList.get(position).getRegister());
@@ -33,13 +43,6 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.CarsHolder> {
 
 
     }
-    @Override
-    public CarsHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.rcview_main_items, parent, false);
-        return new CarsHolder(view);
-    }
-
 
     @Override
     public int getItemCount() {
@@ -52,6 +55,7 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.CarsHolder> {
         public TextView txtmodel;
         public TextView txtyear;
         public TextView txtkm;
+        public Button seeDetailsBut;
         public View parentview;
 
         public CarsHolder(View view) {
@@ -64,7 +68,16 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.CarsHolder> {
             txtyear = view.findViewById(R.id.txtview_year);
             txtkm = view.findViewById(R.id.txtview_km);
 
+            seeDetailsBut = view.findViewById(R.id.but_details);
+            seeDetailsBut.setOnClickListener(view1 -> seeDetailsCar(getAdapterPosition()));
 
         }
+    }
+    private void seeDetailsCar(int position) {
+        Cars car = carsList.get(position);
+
+        Intent intent = new Intent(contex, DetailCarActivity.class);
+        intent.putExtra("register",car.getRegister());
+        contex.startActivity(intent);
     }
 }

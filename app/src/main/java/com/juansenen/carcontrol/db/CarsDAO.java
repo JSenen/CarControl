@@ -13,8 +13,11 @@ import java.util.List;
 @Dao
 public interface CarsDAO {
 
-    @Query("SELECT * FROM Cars")
+    @Query("SELECT * FROM cars")
     List<Cars> getAll();
+
+    @Query("SELECT * FROM cars WHERE register = :register")
+    Cars getByRegister(String register);
 
     @Insert
     void insert(Cars cars);

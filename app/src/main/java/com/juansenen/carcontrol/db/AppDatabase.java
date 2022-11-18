@@ -9,4 +9,5 @@ import com.juansenen.carcontrol.domain.Cars;
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract CarsDAO carsDAO();
+    public abstract RevisionDAO revisionDAO();
 }

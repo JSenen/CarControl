@@ -7,25 +7,28 @@ import androidx.room.Query;
 import androidx.room.Transaction;
 import androidx.room.Update;
 
+
 import com.juansenen.carcontrol.domain.Cars;
+import com.juansenen.carcontrol.domain.Revision;
 
 import java.util.List;
 
+
 @Dao
-public interface CarsDAO {
+public interface RevisionDAO {
 
-    @Query("SELECT * FROM cars")
-    List<Cars> getAll();
+    @Query("SELECT * FROM revision")
+    List<Revision> getAll();
 
-    @Query("SELECT * FROM cars WHERE register = :register")
-    Cars getByRegister(String register);
 
     @Insert
-    void insert(Cars cars);
+    void insert(Revision revision);
 
     @Delete
-    void delete(Cars cars);
+    void delete(Revision revision);
 
     @Update
-    void update(Cars cars);
+    void update(Revision revision);
+
+
 }

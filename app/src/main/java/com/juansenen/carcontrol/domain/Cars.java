@@ -2,13 +2,18 @@ package com.juansenen.carcontrol.domain;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
+import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity
 public class Cars {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     @NonNull
+    public long car_id;
+    @ColumnInfo
+    public long rev_id;
+    @ColumnInfo
     public String register;
     @ColumnInfo
     public String trademark;
@@ -18,6 +23,9 @@ public class Cars {
     public int year;
     @ColumnInfo
     public int km;
+
+    @Embedded
+    public Revision revision;
 
     public Cars() {}
 

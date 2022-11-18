@@ -1,11 +1,13 @@
 package com.juansenen.carcontrol;
 
 import static com.juansenen.carcontrol.db.Constans.DATABASE_NAME;
+import static com.juansenen.carcontrol.db.Constans.DATABASE_REVISION;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,7 +15,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
 import com.juansenen.carcontrol.db.AppDatabase;
+import com.juansenen.carcontrol.db.RevisionDAO;
 import com.juansenen.carcontrol.domain.Cars;
+import com.juansenen.carcontrol.domain.Revision;
 
 public class DetailCarActivity extends AppCompatActivity {
 
@@ -28,11 +32,12 @@ public class DetailCarActivity extends AppCompatActivity {
             return;
         }
 
-        // Cargar los detalles del vehiculo
+        // TODO Revisiones en los detalles del vehiculo
         final AppDatabase db = Room.databaseBuilder(this, AppDatabase.class, DATABASE_NAME)
                 .allowMainThreadQueries().build();
         Cars car = db.carsDAO().getByRegister(register);
         fillData(car);
+
 
 
     }
@@ -63,6 +68,10 @@ public class DetailCarActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         return true;
+    }
+
+    public void addRevision(View view){
+
     }
 
 }

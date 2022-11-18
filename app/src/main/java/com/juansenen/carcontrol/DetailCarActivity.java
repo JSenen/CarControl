@@ -45,6 +45,10 @@ public class DetailCarActivity extends AppCompatActivity {
         TextView txtkm = findViewById(R.id.txtdetail_km);
 
         txtdetregister.setText(car.getRegister());
+        txttrdmark.setText(car.getTrademark());
+        txtmodel.setText(car.getModel());
+        txtyear.setText(String.valueOf(car.getYear()));
+        txtkm.setText(String.valueOf(car.getKm()));
 
 
     }

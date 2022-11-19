@@ -89,7 +89,7 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.CarsHolder> {
         Cars car = carsList.get(position);
 
         Intent intent = new Intent(contex, AddRevisionActivity.class);
-        intent.putExtra("car_id",car.getCar_id());
+        intent.putExtra("register",car.getRegister());
         contex.startActivity(intent);
     }
 }

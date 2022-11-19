@@ -12,9 +12,9 @@ public class Revision {
     @NonNull
     public long revId;
     @ColumnInfo
-    public long revCarId;
+    public String revCarId;
     @ColumnInfo
-    public long fecha;
+    public String fecha;
     @ColumnInfo
     public boolean done;
     @ColumnInfo
@@ -32,7 +32,7 @@ public class Revision {
     @ColumnInfo
     public boolean limpiaparabrisas;
 
-    public Revision(long revCarId, long fecha, boolean done, int kmrevision, boolean aceite,
+    public Revision(String revCarId, String fecha, boolean done, int kmrevision, boolean aceite,
                     boolean filtros, boolean ruedas, boolean discosfreno,
                     boolean anticongelante, boolean limpiaparabrisas) {
         this.revCarId = revCarId;
@@ -59,19 +59,19 @@ public class Revision {
         this.revId = revId;
     }
 
-    public long getRevCarId() {
+    public String getRevCarId() {
         return revCarId;
     }
 
-    public void setRevCarId(long revCarId) {
+    public void setRevCarId(String revCarId) {
         this.revCarId = revCarId;
     }
 
-    public long getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(long fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 

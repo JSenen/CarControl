@@ -19,6 +19,7 @@ import android.widget.Button;
 import com.juansenen.carcontrol.adapter.CarsAdapter;
 import com.juansenen.carcontrol.db.AppDatabase;
 import com.juansenen.carcontrol.domain.Cars;
+import com.juansenen.carcontrol.domain.Revision;
 
 import java.util.ArrayList;
 import java.util.List;

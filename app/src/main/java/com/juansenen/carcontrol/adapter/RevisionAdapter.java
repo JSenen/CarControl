@@ -1,6 +1,7 @@
 package com.juansenen.carcontrol.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,9 +9,9 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.juansenen.carcontrol.AddRevisionActivity;
 import com.juansenen.carcontrol.R;
 import com.juansenen.carcontrol.domain.Revision;
 
@@ -76,10 +77,8 @@ public class RevisionAdapter extends RecyclerView.Adapter<RevisionAdapter.Revisi
             mrkantifreeze = view.findViewById(R.id.rc_rev_item_antifreeze);
             mrkwindowclen = view.findViewById(R.id.rc_rev_item_washerfluid);
 
-
         }
     }
-
 
 
 }

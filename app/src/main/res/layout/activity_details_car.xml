@@ -146,23 +146,7 @@
         android:layout_height="69dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="1dp">
-
-        <Button
-            android:id="@+id/butdetail_addrevision"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="addRevision"
-            android:text="Añadir Revisión" />
-
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Button" />
-    </LinearLayout>
+        tools:layout_editor_absoluteX="1dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcview_revisiones"

@@ -90,8 +90,6 @@ public class DetailCarActivity extends AppCompatActivity {
         return true;
     }
 
-    public void addRevision(View view){
 
-    }
 
 }

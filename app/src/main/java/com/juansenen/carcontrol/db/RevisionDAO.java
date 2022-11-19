@@ -20,6 +20,9 @@ public interface RevisionDAO {
     @Query("SELECT * FROM revision")
     List<Revision> getAll();
 
+    @Query("SELECT * FROM revision WHERE revCarId = :revCarId")
+    Revision getByRevCarId(long revCarId);
+
     @Insert
     void insert(Revision revision);
 

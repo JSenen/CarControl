@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.juansenen.carcontrol.AddRevisionActivity;
 import com.juansenen.carcontrol.DetailCarActivity;
 import com.juansenen.carcontrol.R;
 import com.juansenen.carcontrol.domain.Cars;
@@ -56,6 +57,7 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.CarsHolder> {
         public TextView txtyear;
         public TextView txtkm;
         public Button seeDetailsBut;
+        public Button addRevBut;
         public View parentview;
 
         public CarsHolder(View view) {
@@ -71,6 +73,9 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.CarsHolder> {
             seeDetailsBut = view.findViewById(R.id.but_details);
             seeDetailsBut.setOnClickListener(view1 -> seeDetailsCar(getAdapterPosition()));
 
+            addRevBut = view.findViewById(R.id.but_addrev);
+            addRevBut.setOnClickListener(view1 -> addRevCar(getAdapterPosition()));
+
         }
     }
     private void seeDetailsCar(int position) {
@@ -78,6 +83,13 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.CarsHolder> {
 
         Intent intent = new Intent(contex, DetailCarActivity.class);
         intent.putExtra("register",car.getRegister());
+        contex.startActivity(intent);
+    }
+    private void addRevCar(int position) {
+        Cars car = carsList.get(position);
+
+        Intent intent = new Intent(contex, AddRevisionActivity.class);
+        intent.putExtra("car_id",car.getCar_id());
         contex.startActivity(intent);
     }
 }

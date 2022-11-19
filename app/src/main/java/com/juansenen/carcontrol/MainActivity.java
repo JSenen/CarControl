@@ -12,10 +12,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Button;
 
 import com.juansenen.carcontrol.adapter.CarsAdapter;
 import com.juansenen.carcontrol.db.AppDatabase;
 import com.juansenen.carcontrol.domain.Cars;
+import com.juansenen.carcontrol.domain.Revision;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
     private List<Cars> carsList;
     private CarsAdapter adapter;
+    private Button buttonDetails;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +44,12 @@ public class MainActivity extends AppCompatActivity {
         adapter = new CarsAdapter(this,carsList);
         recyclerView.setAdapter(adapter);
 
+        registerForContextMenu(recyclerView);
+
+
     }
+
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -52,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
 
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_addcar,menu);
@@ -60,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
     }
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
         if (item.getItemId() == R.id.actbar_add) {
             Intent intent = new Intent(this, AddCarActivity.class);
             startActivity(intent);
@@ -67,4 +79,5 @@ public class MainActivity extends AppCompatActivity {
         }
         return false;
     }
+
 }

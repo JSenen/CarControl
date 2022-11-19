@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
     private List<Cars> carsList;
     private CarsAdapter adapter;
-    private Button buttonDetails;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

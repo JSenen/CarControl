@@ -13,7 +13,7 @@ public interface CarsAndRevisionDAO {
 
     @Transaction
     @Query("SELECT * FROM cars")
-    public List<CarsAndRevision> getCarAndRevision();
+    List<CarsAndRevision> getCarAndRevision();
 
 
 }

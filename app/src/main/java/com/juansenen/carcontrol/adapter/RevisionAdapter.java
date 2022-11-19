@@ -47,7 +47,7 @@ public class RevisionAdapter extends RecyclerView.Adapter<RevisionAdapter.Revisi
 
     @Override
     public int getItemCount() {
-       return  revisionList.size();
+        return  revisionList.size();
     }
 
     public class RevisionHolder extends RecyclerView.ViewHolder {

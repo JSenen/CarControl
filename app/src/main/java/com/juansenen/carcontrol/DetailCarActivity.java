@@ -28,7 +28,6 @@ public class DetailCarActivity extends AppCompatActivity {
     private List<Revision> revisionList;
     private RevisionAdapter revisionAdapter;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

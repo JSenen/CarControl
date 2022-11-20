@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -56,8 +57,8 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.CarsHolder> {
         public TextView txtmodel;
         public TextView txtyear;
         public TextView txtkm;
-        public Button addfuel;
         public Button detailfuel;
+        public ImageButton imgaddfuel;
         public View parentview;
 
         public CarsHolder(View view) {
@@ -70,8 +71,8 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.CarsHolder> {
             txtyear = view.findViewById(R.id.txtview_year);
             txtkm = view.findViewById(R.id.txtview_km);
 
-            addfuel = view.findViewById(R.id.but_addfuel);
-            addfuel.setOnClickListener(view1 -> addFuelCar(getAdapterPosition()));
+            imgaddfuel = view.findViewById(R.id.imgbut_addfuel);
+            imgaddfuel.setOnClickListener(view1 -> addFuelCar(getAdapterPosition()));
 
             detailfuel = view.findViewById(R.id.butlistfuel);
             detailfuel.setOnClickListener(view1 -> seeDetailFuel(getAdapterPosition()));

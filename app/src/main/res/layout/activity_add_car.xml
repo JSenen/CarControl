@@ -45,8 +45,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Año matriculación"
-            android:inputType="textPersonName" />
+            android:hint="Fecha de matriculación"
+            android:inputType="date" />
 
         <EditText
             android:id="@+id/edtxt_kms"
@@ -63,6 +63,7 @@
 
             <Button
                 android:id="@+id/butAdd"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

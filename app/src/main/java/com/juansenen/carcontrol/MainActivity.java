@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
         carsList.addAll(db.carsDAO().getAll());
         adapter.notifyDataSetChanged();
 
+
     }
 
     @Override

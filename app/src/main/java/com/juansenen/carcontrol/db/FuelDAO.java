@@ -14,8 +14,11 @@ import java.util.List;
 @Dao
 public interface FuelDAO {
 
-    @Query("SELECT * FROM fuel")
-    List<Fuel> getAllFuel();
+    @Query("SELECT * FROM repostajes WHERE idFuelCar = :matricula")
+    List<Fuel>  getFuelByCar(String matricula);
+
+    @Query("SELECT * FROM repostajes")
+    List<Fuel> getAll();
 
     @Insert
     void insert(Fuel fuel);

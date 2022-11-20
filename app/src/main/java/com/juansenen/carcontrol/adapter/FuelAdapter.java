@@ -15,12 +15,12 @@ import java.util.List;
 
 public class FuelAdapter extends RecyclerView.Adapter<FuelAdapter.FuelHolder> {
 
-    private List<Fuel> fuelList;
+    private List<Fuel> fuellist;
     private Context context;
 
     public FuelAdapter(Context context, List<Fuel> fuelList){
         this.context = context;
-        this.fuelList = fuelList;
+        this.fuellist = fuelList;
     }
     @Override
     public FuelAdapter.FuelHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -30,13 +30,13 @@ public class FuelAdapter extends RecyclerView.Adapter<FuelAdapter.FuelHolder> {
     }
     @Override
     public void onBindViewHolder(FuelAdapter.FuelHolder holder, int position) {
-        holder.txtidfuel.setText(fuelList.get(position).getIdFuelCar());
-        holder.txtpricefuel.setText(String.valueOf(fuelList.get(position).getPrice()));
-        holder.txtlitrefuel.setText(String.valueOf(fuelList.get(position).getLitres()));
+        holder.txtidfuel.setText(fuellist.get(position).getIdFuelCar());
+        holder.txtpricefuel.setText(String.valueOf(fuellist.get(position).getPrice()));
+        holder.txtlitrefuel.setText(String.valueOf(fuellist.get(position).getLitres()));
     }
     @Override
     public int getItemCount() {
-        return fuelList.size();
+        return fuellist.size();
     }
 
     public class FuelHolder extends RecyclerView.ViewHolder{

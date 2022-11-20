@@ -1,41 +1,40 @@
 package com.juansenen.carcontrol.domain;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
-@Entity
+@Entity(tableName = "repostajes",
+        foreignKeys = @ForeignKey(entity = Cars.class,
+                parentColumns = "register",
+                childColumns = "idFuelCar"))
+
 public class Fuel {
-    @PrimaryKey(autoGenerate = true)
-    private long idFuel;
-    @ColumnInfo
+    @PrimaryKey
+    @NonNull
     private String idFuelCar;
     @ColumnInfo
     private float price;
     @ColumnInfo
     private float litres;
 
-    public Fuel(){}
 
-    public Fuel(String idFuelCar, float price, float litres) {
+    public Fuel(@NonNull String idFuelCar, float price, float litres) {
         this.idFuelCar = idFuelCar;
         this.price = price;
         this.litres = litres;
     }
 
-    public long getIdFuel() {
-        return idFuel;
-    }
 
-    public void setIdFuel(long idFuel) {
-        this.idFuel = idFuel;
-    }
-
+    @NonNull
     public String getIdFuelCar() {
         return idFuelCar;
     }
 
-    public void setIdFuelCar(String idFuelCar) {
+    public void setIdFuelCar(@NonNull String idFuelCar) {
         this.idFuelCar = idFuelCar;
     }
 

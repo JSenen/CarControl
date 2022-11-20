@@ -53,23 +53,6 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/but_details"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Detalles"
-            android:textSize="12dp" />
-
-        <Button
-            android:id="@+id/but_addrev"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="addRev"
-            android:text="Añadir Revision"
-            android:textSize="12dp" />
-
-        <Button
             android:id="@+id/but_addfuel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

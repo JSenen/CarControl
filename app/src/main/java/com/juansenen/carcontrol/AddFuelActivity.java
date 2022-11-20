@@ -12,17 +12,24 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.juansenen.carcontrol.db.AppDatabase;
 import com.juansenen.carcontrol.domain.Fuel;
 
 public class AddFuelActivity extends AppCompatActivity {
-
+    private String matricula;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_fuel);
+        Intent intent = getIntent();
+        matricula = intent.getStringExtra("register");
+        if (matricula == null)
+            return;
+        TextView txtregister = findViewById(R.id.txt_addfuel_id);
+        txtregister.setText(matricula);
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -37,24 +44,29 @@ public class AddFuelActivity extends AppCompatActivity {
         return true;
     }
     public void butaddfuel(View view){
-        EditText edtid = findViewById(R.id.edtxt_addfuel_id);
+
+        TextView txtregister = findViewById(R.id.txt_addfuel_id);
+        txtregister.setText(matricula);
+
         EditText edtlitre = findViewById(R.id.edtxt_addfuel_litres);
         EditText edtprice = findViewById(R.id.edtxt_addfuel_price);
+        EditText editkm = findViewById(R.id.edtxt_addfuel_km);
 
-        String register = edtid.getText().toString();
         float litre = Float.parseFloat(edtlitre.getText().toString());
         float price = Float.parseFloat(edtprice.getText().toString());
+        int km = Integer.parseInt(editkm.getText().toString());
+        float total = litre * price;
 
-        Fuel fuel = new Fuel(register, price, litre);
+        Fuel fuel = new Fuel(matricula, price, litre, km, total);
         final AppDatabase db = Room.databaseBuilder(this,AppDatabase.class, DATABASE_NAME)
                 .allowMainThreadQueries().build();
         db.fuelDAO().insert(fuel);
 
         Toast.makeText(this,"AÑADIDO",Toast.LENGTH_SHORT).show();
 
-        edtid.setText("");
         edtlitre.setText("");
         edtprice.setText("");
-        edtid.requestFocus();
+        editkm.setText("");
+        edtlitre.requestFocus();
     }
 }

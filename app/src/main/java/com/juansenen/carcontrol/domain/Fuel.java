@@ -13,23 +13,47 @@ import androidx.room.PrimaryKey;
                 childColumns = "idFuelCar"))
 
 public class Fuel {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     @NonNull
+    private long id;
+    @ColumnInfo
     private String idFuelCar;
     @ColumnInfo
     private float price;
     @ColumnInfo
     private float litres;
+    @ColumnInfo
+    private int Km;
+    @ColumnInfo
+    private float total;
 
 
-    public Fuel(@NonNull String idFuelCar, float price, float litres) {
+    public Fuel(@NonNull long id,String idFuelCar, float price, float litres, int km, float total) {
+        this.id = id;
         this.idFuelCar = idFuelCar;
         this.price = price;
         this.litres = litres;
+        this.Km = km;
+        this.total = total;
     }
 
+    public Fuel(String idFuelCar, float price, float litres, int km, float total) {
+        this.idFuelCar = idFuelCar;
+        this.price = price;
+        this.litres = litres;
+        Km = km;
+        this.total = total;
+    }
+    public Fuel(){}
 
-    @NonNull
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public String getIdFuelCar() {
         return idFuelCar;
     }
@@ -52,5 +76,21 @@ public class Fuel {
 
     public void setLitres(float litres) {
         this.litres = litres;
+    }
+
+    public int getKm() {
+        return Km;
+    }
+
+    public void setKm(int km) {
+        Km = km;
+    }
+
+    public float getTotal() {
+        return total;
+    }
+
+    public void setTotal(float total) {
+        this.total = total;
     }
 }

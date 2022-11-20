@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.juansenen.carcontrol.R;
 import com.juansenen.carcontrol.adapter.CarsAdapter;
@@ -41,8 +42,9 @@ public class DetailFuelActivity extends AppCompatActivity {
         if (matricula == null)
             return;
         fuelList = new ArrayList<>();
+        TextView textView = findViewById(R.id.rcview_fuel_main_register);
+        textView.setText(matricula);
 
-        // Cargo los detalles de la tarea
         final AppDatabase db = Room.databaseBuilder(this, AppDatabase.class, DATABASE_NAME)
                 .allowMainThreadQueries().build();
         fuelList = db.fuelDAO().getFuelByCar(matricula);

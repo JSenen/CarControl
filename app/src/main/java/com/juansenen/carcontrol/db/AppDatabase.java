@@ -6,7 +6,7 @@ import androidx.room.RoomDatabase;
 import com.juansenen.carcontrol.domain.Cars;
 import com.juansenen.carcontrol.domain.Fuel;
 
-@Database(entities = {Cars.class, Fuel.class}, version = 1)
+@Database(entities = {Cars.class, Fuel.class}, version = 2)
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract CarsDAO carsDAO();

@@ -30,9 +30,10 @@ public class FuelAdapter extends RecyclerView.Adapter<FuelAdapter.FuelHolder> {
     }
     @Override
     public void onBindViewHolder(FuelAdapter.FuelHolder holder, int position) {
-        holder.txtidfuel.setText(fuellist.get(position).getIdFuelCar());
         holder.txtpricefuel.setText(String.valueOf(fuellist.get(position).getPrice()));
         holder.txtlitrefuel.setText(String.valueOf(fuellist.get(position).getLitres()));
+        holder.txtkm.setText(String.valueOf(fuellist.get(position).getKm()));
+        holder.txttotal.setText(String.valueOf(fuellist.get(position).getTotal()));
     }
     @Override
     public int getItemCount() {
@@ -40,9 +41,11 @@ public class FuelAdapter extends RecyclerView.Adapter<FuelAdapter.FuelHolder> {
     }
 
     public class FuelHolder extends RecyclerView.ViewHolder{
-        public TextView txtidfuel;
+
         public TextView txtpricefuel;
         public TextView txtlitrefuel;
+        public TextView txtkm;
+        public TextView txttotal;
 
         public View parentview;
 
@@ -50,9 +53,10 @@ public class FuelAdapter extends RecyclerView.Adapter<FuelAdapter.FuelHolder> {
             super(view);
             parentview = view;
 
-            txtidfuel = view.findViewById(R.id.rcw_itemfuel_id);
             txtpricefuel = view.findViewById(R.id.rcw_itemfuel_price);
             txtlitrefuel = view.findViewById(R.id.rcw_itemfuel_litre);
+            txtkm = view.findViewById(R.id.rcw_itemfuel_km);
+            txttotal = view.findViewById(R.id.rcw_itemfuel_total);
 
         }
     }

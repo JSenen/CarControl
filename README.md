@@ -2,7 +2,7 @@
 ## Actividad Aprendizaje 1EVA - 2ºDAM - PROGRAMACION MULTIMEDIA DISPOSITIVOS MOVILES
 
 ![Java](https://img.shields.io/badge/Java-red?style=for-the-badge&logo=Java&logoColor=white)
-![Android](https://img.shields.io/badge/android?style=for-the-badge&logo=Android&logoColor=white)
+![Android](https://img.shields.io/badge/androidstudio-green?style=for-the-badge&logo=androidstudio&logoColor=white)
 
 ### Requisitos (1 pto cada uno, obligatorios
 

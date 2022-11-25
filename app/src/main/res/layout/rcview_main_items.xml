@@ -6,20 +6,22 @@
     android:orientation="vertical"
     android:padding="10dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"></LinearLayout>
-
     <TextView
         android:id="@+id/txtview_register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Register"
+        android:text="@string/register"
         android:textAlignment="center"
         android:textColor="#009688"
         android:textSize="20dp"
         android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txtview_year"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textSize="16dp" />
 
     <TextView
         android:id="@+id/txtview_trdmark"
@@ -40,13 +42,6 @@
         android:textSize="16dp" />
 
     <TextView
-        android:id="@+id/txtview_year"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textSize="16dp" />
-
-    <TextView
         android:id="@+id/txtview_km"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -63,6 +58,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/ic_gas_station" />
+
+        <ImageButton
+            android:id="@+id/imgbut_addreview"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/ic__car_repair" />
     </LinearLayout>
 
     <LinearLayout
@@ -71,12 +72,20 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/butlistreviews"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Listado Revisiones" />
+
+        <Button
             android:id="@+id/butlistfuel"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Listado Repostajes"
+            android:text="@string/fuel_list"
             android:textSize="12dp" />
     </LinearLayout>
 

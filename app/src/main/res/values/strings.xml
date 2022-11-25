@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">CarControl</string>
+    <string name="add">AÑADIDO</string>
+    <string name="register">matricula</string>
+    <string name="fuel_list">Listado Repostajes</string>
+    <string name="oil">Aceite</string>
+    <string name="brakes">Frenos</string>
+    <string name="Brake_liquid">Liquido Frenos</string>
+    <string name="wheels">Ruedas</string>
+    <string name="antifreeze">Anticongelante</string>
+    <string name="wipers">Limpia Parabrisas</string>
 </resources>

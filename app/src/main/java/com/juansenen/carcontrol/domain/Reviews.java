@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 
@@ -12,6 +13,7 @@ import androidx.room.PrimaryKey;
                 parentColumns = "register",
                 childColumns = "idReviewCar"))
 public class Reviews {
+
     @PrimaryKey(autoGenerate = true)
     @NonNull
     public long id;
@@ -36,6 +38,7 @@ public class Reviews {
     @ColumnInfo
     public boolean wipers;
 
+
     public Reviews(@NonNull long id, String idReviewCar, String fecha, int kmreview, float price,
                    boolean oil, boolean brakes, boolean freeze, boolean brakeLiquid,
                    boolean wheels, boolean wipers) {
@@ -51,7 +54,7 @@ public class Reviews {
         this.wheels = wheels;
         this.wipers = wipers;
     }
-
+    @Ignore //
     public Reviews(String idReviewCar, String fecha, int kmreview, float price, boolean oil,
                    boolean brakes, boolean freeze, boolean brakeLiquid, boolean wheels,
                    boolean wipers) {

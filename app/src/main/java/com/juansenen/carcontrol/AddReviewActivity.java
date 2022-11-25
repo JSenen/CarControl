@@ -1,7 +1,10 @@
 package com.juansenen.carcontrol;
 
+import static com.juansenen.carcontrol.db.Constans.DATABASE_NAME;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,16 +16,26 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.juansenen.carcontrol.db.AppDatabase;
+import com.juansenen.carcontrol.domain.Fuel;
 import com.juansenen.carcontrol.domain.Reviews;
 
 public class AddReviewActivity extends AppCompatActivity {
+
+    private String matricula;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_review);
 
-        //TODO Recibir matricula de la MainActivity
+        Intent intent = getIntent();
+        matricula = intent.getStringExtra("register");
+        if (matricula == null)
+            return;
+        TextView txtregister = findViewById(R.id.txt_review_register);
+        txtregister.setText(matricula);
+
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -49,7 +62,7 @@ public class AddReviewActivity extends AppCompatActivity {
         CheckBox chkReviewWheels = findViewById(R.id.chk_addreview_wheels);
         CheckBox chkReviewWipers = findViewById(R.id.chk_addreview_wipers);
 
-        String reviewRegister = txtRegister.getText().toString(); //TODO Añadir matricula vehiculo SQL
+        String reviewRegister = txtRegister.getText().toString();
         String reviewDate = edtReviewDate.getText().toString();
         int reviewKm = Integer.parseInt(edtReviewKm.getText().toString());
         float reviewPrice = Float.parseFloat(edtReviewPrice.getText().toString());
@@ -60,12 +73,26 @@ public class AddReviewActivity extends AppCompatActivity {
         boolean reviewWheels = chkReviewWheels.isChecked();
         boolean reviewWipers = chkReviewWipers.isChecked();
 
-        Reviews review = new Reviews(reviewRegister,reviewDate,reviewKm,reviewPrice,reviewOil,reviewBrakes,reviewFreeze,reviewLiqBrakes,reviewWheels,reviewWipers);
+        Reviews review = new Reviews(reviewRegister,reviewDate,reviewKm,reviewPrice,reviewOil,
+                reviewBrakes,reviewFreeze,reviewLiqBrakes,reviewWheels,reviewWipers);
 
-        //TODO Conectar a la BBDD
+        Reviews reviews = new Reviews(reviewRegister,reviewDate,reviewKm,reviewPrice,reviewOil
+                ,reviewBrakes,reviewFreeze,reviewLiqBrakes,reviewWheels,reviewWipers);
+        final AppDatabase db = Room.databaseBuilder(this,AppDatabase.class, DATABASE_NAME)
+                .allowMainThreadQueries().build();
+        db.reviewDAO().insert(reviews);
 
-        Toast.makeText(this,"AÑADIDO",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.add,Toast.LENGTH_SHORT).show();
 
-        //TODO Limpiar campos
+        edtReviewDate.setText("");
+        edtReviewKm.setText("");
+        edtReviewPrice.setText("");
+        chkReviewOil.setChecked(false);
+        chkReviewBrakes.setChecked(false);
+        chkReviewFreeze.setChecked(false);
+        chkReviewLiqBrakes.setChecked(false);
+        chkReviewWheels.setChecked(false);
+        chkReviewWipers.setChecked(false);
+
     }
 }

@@ -54,7 +54,6 @@ public class Reviews {
         this.wheels = wheels;
         this.wipers = wipers;
     }
-    @Ignore //
     public Reviews(String idReviewCar, String fecha, int kmreview, float price, boolean oil,
                    boolean brakes, boolean freeze, boolean brakeLiquid, boolean wheels,
                    boolean wipers) {
@@ -69,6 +68,7 @@ public class Reviews {
         this.wheels = wheels;
         this.wipers = wipers;
     }
+    public Reviews(){}
 
     public long getId() {
         return id;

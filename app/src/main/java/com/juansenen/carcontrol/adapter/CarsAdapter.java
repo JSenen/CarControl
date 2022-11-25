@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.juansenen.carcontrol.AddFuelActivity;
 import com.juansenen.carcontrol.AddReviewActivity;
 import com.juansenen.carcontrol.DetailFuelActivity;
-import com.juansenen.carcontrol.DetalReviewActivity;
+import com.juansenen.carcontrol.DetailReviewActivity;
 import com.juansenen.carcontrol.R;
 import com.juansenen.carcontrol.domain.Cars;
 
@@ -117,7 +117,7 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.CarsHolder> {
         private void seeDetailReviews(int position) {
             Cars car = carsList.get(position);
 
-            Intent intent = new Intent(contex, DetalReviewActivity.class);
+            Intent intent = new Intent(contex, DetailReviewActivity.class);
             intent.putExtra("register", car.getRegister());
             contex.startActivity(intent);
         }

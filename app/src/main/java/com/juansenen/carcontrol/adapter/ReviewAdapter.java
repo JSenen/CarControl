@@ -34,7 +34,6 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewHold
     }
     @Override
     public void onBindViewHolder(ReviewAdapter.ReviewHolder holder, int position) {
-        holder.txtregister.setText(reviewsList.get(position).getIdReviewCar());
         holder.txtdate.setText(reviewsList.get(position).getFecha());
         holder.txtkm.setText(String.valueOf(reviewsList.get(position).getKmreview()));
         holder.txtprice.setText(String.valueOf(reviewsList.get(position).getPrice()));
@@ -46,6 +45,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewHold
         holder.chkBrakes.setChecked(reviewsList.get(position).isBrakes());
 
 
+
     }
 
     @Override
@@ -55,7 +55,6 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewHold
 
     public class ReviewHolder extends RecyclerView.ViewHolder {
 
-        public TextView txtregister;
         public TextView txtdate;
         public TextView txtkm;
         public TextView txtprice;
@@ -71,7 +70,6 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewHold
             super(view);
             parentview = view;
 
-            txtregister = view.findViewById(R.id.txt_review_register);
             txtdate = view.findViewById(R.id.txt_review_item_date);
             txtkm = view.findViewById(R.id.txt_review_item_km);
             txtprice = view.findViewById(R.id.txt_review_item_price);

@@ -6,7 +6,6 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import com.juansenen.carcontrol.domain.Cars;
 import com.juansenen.carcontrol.domain.Fuel;
 
 import java.util.List;

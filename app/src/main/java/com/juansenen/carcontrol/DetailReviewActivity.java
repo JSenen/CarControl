@@ -21,7 +21,7 @@ import com.juansenen.carcontrol.domain.Reviews;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DetalReviewActivity extends AppCompatActivity {
+public class DetailReviewActivity extends AppCompatActivity {
 
     private List<Reviews> reviewsList;
     private ReviewAdapter reviewAdapter;
@@ -37,8 +37,9 @@ public class DetalReviewActivity extends AppCompatActivity {
         if (matricula == null)
             return;
         reviewsList = new ArrayList<>();
-        TextView textView = findViewById(R.id.rcview_review_main_register);
-        textView.setText(matricula);
+
+        TextView idCar = findViewById(R.id.reviews_idcar);
+        idCar.setText(matricula);
 
         final AppDatabase db = Room.databaseBuilder(this, AppDatabase.class, DATABASE_NAME)
                 .allowMainThreadQueries().build();

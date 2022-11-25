@@ -80,6 +80,13 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewHold
             chkFreeze = view.findViewById(R.id.chk_review_item_freeze);
             chkWipers = view.findViewById(R.id.chk_review_item_whaser);
 
+            chkOil.setEnabled(false);
+            chkBrakes.setEnabled(false);
+            chkLiquid.setEnabled(false);
+            chkWheels.setEnabled(false);
+            chkFreeze.setEnabled(false);
+            chkWipers.setEnabled(false);
+
         }
     }
 

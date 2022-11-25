@@ -94,5 +94,7 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.CarsHolder> {
             intent.putExtra("register", car.getRegister());
             contex.startActivity(intent);
         }
+
+        // TODO (1) Añadir evento boton añadir revision
     }
 }

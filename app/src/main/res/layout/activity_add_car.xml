@@ -16,6 +16,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edtxt_register"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -26,6 +27,7 @@
 
         <EditText
             android:id="@+id/edtxt_trdmark"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -34,6 +36,7 @@
 
         <EditText
             android:id="@+id/edtxt_model"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -42,6 +45,7 @@
 
         <EditText
             android:id="@+id/edtxt_year"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -50,6 +54,7 @@
 
         <EditText
             android:id="@+id/edtxt_kms"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"

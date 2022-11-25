@@ -24,6 +24,7 @@
 
         <EditText
             android:id="@+id/edtxt_addfuel_litres"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -32,6 +33,7 @@
 
         <EditText
             android:id="@+id/edtxt_addfuel_price"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -40,6 +42,7 @@
 
         <EditText
             android:id="@+id/edtxt_addfuel_km"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"

@@ -48,6 +48,7 @@
 
         <Button
             android:id="@+id/butaddfuel"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="butaddfuel"

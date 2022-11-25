@@ -1,16 +1,12 @@
 package com.juansenen.carcontrol.db;
 
-import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
-import androidx.room.Transaction;
 import androidx.room.Update;
 
 import com.juansenen.carcontrol.domain.Cars;
-import com.juansenen.carcontrol.domain.CarsWithFuel;
-import com.juansenen.carcontrol.domain.Fuel;
 
 import java.util.List;
 

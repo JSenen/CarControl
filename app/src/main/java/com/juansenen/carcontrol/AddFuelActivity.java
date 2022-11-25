@@ -62,7 +62,7 @@ public class AddFuelActivity extends AppCompatActivity {
                 .allowMainThreadQueries().build();
         db.fuelDAO().insert(fuel);
 
-        Toast.makeText(this,"AÑADIDO",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,R.string.add,Toast.LENGTH_SHORT).show();
 
         edtlitre.setText("");
         edtprice.setText("");

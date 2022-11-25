@@ -12,7 +12,9 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.juansenen.carcontrol.AddFuelActivity;
+import com.juansenen.carcontrol.AddReviewActivity;
 import com.juansenen.carcontrol.DetailFuelActivity;
+import com.juansenen.carcontrol.DetailReviewActivity;
 import com.juansenen.carcontrol.R;
 import com.juansenen.carcontrol.domain.Cars;
 
@@ -58,7 +60,9 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.CarsHolder> {
         public TextView txtyear;
         public TextView txtkm;
         public Button detailfuel;
+        public Button detailreviews;
         public ImageButton imgaddfuel;
+        public ImageButton imgaddreview;
         public View parentview;
 
         public CarsHolder(View view) {
@@ -74,8 +78,16 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.CarsHolder> {
             imgaddfuel = view.findViewById(R.id.imgbut_addfuel);
             imgaddfuel.setOnClickListener(view1 -> addFuelCar(getAdapterPosition()));
 
+            imgaddreview = view.findViewById(R.id.imgbut_addreview);
+            imgaddreview.setOnClickListener(view1 -> addReviewCar(getAdapterPosition()));
+
             detailfuel = view.findViewById(R.id.butlistfuel);
             detailfuel.setOnClickListener(view1 -> seeDetailFuel(getAdapterPosition()));
+
+            detailreviews = view.findViewById(R.id.butlistreviews);
+            detailreviews.setOnClickListener(view1 -> seeDetailReviews(getAdapterPosition()));
+
+
 
         }
 
@@ -86,6 +98,13 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.CarsHolder> {
             intent.putExtra("register", car.getRegister());
             contex.startActivity(intent);
         }
+        private void addReviewCar(int position) {
+            Cars cars = carsList.get(position);
+
+            Intent intent = new Intent(contex, AddReviewActivity.class);
+            intent.putExtra("register", cars.getRegister());
+            contex.startActivity(intent);
+        }
 
         private void seeDetailFuel(int position) {
             Cars car = carsList.get(position);
@@ -94,5 +113,15 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.CarsHolder> {
             intent.putExtra("register", car.getRegister());
             contex.startActivity(intent);
         }
+
+        private void seeDetailReviews(int position) {
+            Cars car = carsList.get(position);
+
+            Intent intent = new Intent(contex, DetailReviewActivity.class);
+            intent.putExtra("register", car.getRegister());
+            contex.startActivity(intent);
+        }
+
+
     }
 }

@@ -13,4 +13,6 @@
     <string name="list_reviews">Revisiones</string>
     <string name="maps">mapas</string>
     <string name="save_position">Se ha guardado la posición</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -76,8 +76,7 @@ public class MainActivity extends AppCompatActivity {
         }else if (item.getItemId() == R.id.actbar_map) {
             Intent intent = new Intent(this, LastParkActivity.class);
             startActivity(intent);
-
-            // (1) TODO Accion para el mapa en el actionbar
+            //TODO item action bar dirigirse a GPS Activity
         }
         return false;
     }

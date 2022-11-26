@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:mapbox_cameraTargetLat="40.48205"
         app:mapbox_cameraTargetLng="-3.35996"
-        app:mapbox_cameraZoom="13.0">
+        app:mapbox_cameraZoom="12">
 
     </com.mapbox.maps.MapView>
 

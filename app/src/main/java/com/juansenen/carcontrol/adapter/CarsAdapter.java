@@ -15,6 +15,7 @@ import com.juansenen.carcontrol.AddFuelActivity;
 import com.juansenen.carcontrol.AddReviewActivity;
 import com.juansenen.carcontrol.DetailFuelActivity;
 import com.juansenen.carcontrol.DetailReviewActivity;
+import com.juansenen.carcontrol.LastParkActivity;
 import com.juansenen.carcontrol.MapParkActivity;
 import com.juansenen.carcontrol.R;
 import com.juansenen.carcontrol.domain.Cars;
@@ -140,8 +141,11 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.CarsHolder> {
         }
 
         public void goLastParking(int position) {
-            Cars ca = carsList.get(position);
-            //TODO Dirigir a Activity correspondiente
+            Cars car = carsList.get(position);
+
+            Intent intent = new Intent(contex, LastParkActivity.class);
+            intent.putExtra("register", car.getRegister());
+            contex.startActivity(intent);
         }
 
     }

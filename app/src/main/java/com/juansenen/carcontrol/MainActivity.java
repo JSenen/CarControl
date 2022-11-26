@@ -73,6 +73,9 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, AddCarActivity.class);
             startActivity(intent);
             return true;
+        }else if (item.getItemId() == R.id.actbar_map) {
+            Intent intent = new Intent(this, MapParkActivity.class);
+            startActivity(intent);
         }
         return false;
     }

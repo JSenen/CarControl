@@ -40,6 +40,10 @@ dependencies {
     implementation "androidx.room:room-runtime:2.4.3"
     annotationProcessor "androidx.room:room-compiler:2.4.3"
 
+    implementation 'com.mapbox.maps:android:10.9.1'
+
+    implementation("com.google.android.gms:play-services-location:18.0.0")
+
     compileOnly "org.projectlombok:lombok:1.18.24"
     annotationProcessor "org.projectlombok:lombok:1.18.24"
 
@@ -51,3 +55,4 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
 
 }
+

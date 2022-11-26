@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.mapbox.maps.MapView
+    android:id="@+id/mapViewPark"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:mapbox_cameraTargetLat="40.48205"
+    app:mapbox_cameraTargetLng="-3.35996"
+    app:mapbox_cameraZoom="12.0"
+        android:padding="10dp"
+    >
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingActionButton_park"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"
+            android:clickable="true"
+            app:backgroundTint="#9F4CAF51"
+            app:fabSize="normal"
+            app:srcCompat="@android:drawable/ic_menu_save" />
+
+    </com.mapbox.maps.MapView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

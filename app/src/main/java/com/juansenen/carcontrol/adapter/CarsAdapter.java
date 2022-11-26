@@ -15,6 +15,7 @@ import com.juansenen.carcontrol.AddFuelActivity;
 import com.juansenen.carcontrol.AddReviewActivity;
 import com.juansenen.carcontrol.DetailFuelActivity;
 import com.juansenen.carcontrol.DetailReviewActivity;
+import com.juansenen.carcontrol.MapParkActivity;
 import com.juansenen.carcontrol.R;
 import com.juansenen.carcontrol.domain.Cars;
 
@@ -63,6 +64,7 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.CarsHolder> {
         public Button detailreviews;
         public ImageButton imgaddfuel;
         public ImageButton imgaddreview;
+        public ImageButton imgaddparking;
         public View parentview;
 
         public CarsHolder(View view) {
@@ -80,6 +82,9 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.CarsHolder> {
 
             imgaddreview = view.findViewById(R.id.imgbut_addreview);
             imgaddreview.setOnClickListener(view1 -> addReviewCar(getAdapterPosition()));
+
+            imgaddparking = view.findViewById(R.id.imgbut_addpark);
+            imgaddparking.setOnClickListener(view1 -> addCarPark(getAdapterPosition()));
 
             detailfuel = view.findViewById(R.id.butlistfuel);
             detailfuel.setOnClickListener(view1 -> seeDetailFuel(getAdapterPosition()));
@@ -118,6 +123,14 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.CarsHolder> {
             Cars car = carsList.get(position);
 
             Intent intent = new Intent(contex, DetailReviewActivity.class);
+            intent.putExtra("register", car.getRegister());
+            contex.startActivity(intent);
+        }
+
+        private void addCarPark(int position) {
+            Cars car = carsList.get(position);
+
+            Intent intent = new Intent(contex, MapParkActivity.class);
             intent.putExtra("register", car.getRegister());
             contex.startActivity(intent);
         }

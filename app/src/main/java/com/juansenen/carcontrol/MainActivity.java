@@ -73,6 +73,9 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, AddCarActivity.class);
             startActivity(intent);
             return true;
+        }else if (item.getItemId() == R.id.actbar_map) {
+
+            // (1) TODO Accion para el mapa en el actionbar
         }
         return false;
     }

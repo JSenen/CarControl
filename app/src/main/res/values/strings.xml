@@ -3,6 +3,7 @@
     <string name="add">AÑADIDO</string>
     <string name="register">matricula</string>
     <string name="fuel_list">Repostajes</string>
+    <string name="last_parking">Ir a Parking</string>
     <string name="oil">Aceite</string>
     <string name="brakes">Frenos</string>
     <string name="Brake_liquid">Liquido Frenos</string>

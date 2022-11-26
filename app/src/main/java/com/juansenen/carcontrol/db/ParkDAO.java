@@ -18,6 +18,9 @@ public interface ParkDAO {
     @Query("SELECT * FROM parking")
     List<Park> getAll();
 
+    @Query("SELECT * FROM parking WHERE idCarPark = :matricula ORDER BY id DESC LIMIT 1 ;")
+    Park getLastPark(String matricula);
+
     @Insert
     void insert(Park park);
 

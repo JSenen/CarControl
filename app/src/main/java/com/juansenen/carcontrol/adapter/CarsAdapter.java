@@ -62,6 +62,7 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.CarsHolder> {
         public TextView txtkm;
         public Button detailfuel;
         public Button detailreviews;
+        public Button goParking;
         public ImageButton imgaddfuel;
         public ImageButton imgaddreview;
         public ImageButton imgaddparking;
@@ -91,6 +92,9 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.CarsHolder> {
 
             detailreviews = view.findViewById(R.id.butlistreviews);
             detailreviews.setOnClickListener(view1 -> seeDetailReviews(getAdapterPosition()));
+
+            goParking = view.findViewById(R.id.butlastpark);
+            goParking.setOnClickListener(view1 -> goLastParking(getAdapterPosition()));
 
 
 
@@ -135,6 +139,10 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.CarsHolder> {
             contex.startActivity(intent);
         }
 
+        public void goLastParking(int position) {
+            Cars ca = carsList.get(position);
+            //TODO Dirigir a Activity correspondiente
+        }
 
     }
 }

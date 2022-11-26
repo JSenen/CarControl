@@ -74,8 +74,8 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
             return true;
         }else if (item.getItemId() == R.id.actbar_map) {
-            Intent intent = new Intent(this, MapParkActivity.class);
-            startActivity(intent);
+
+            // (1) TODO Accion para el mapa en el actionbar
         }
         return false;
     }

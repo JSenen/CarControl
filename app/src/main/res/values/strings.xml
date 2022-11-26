@@ -11,4 +11,5 @@
     <string name="wipers">Limpia Parabrisas</string>
     <string name="list_reviews">Revisiones</string>
     <string name="maps">mapas</string>
+    <string name="save_position">Se ha guardado la posición</string>
 </resources>

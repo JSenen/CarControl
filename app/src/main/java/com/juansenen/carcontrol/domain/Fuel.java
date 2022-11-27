@@ -25,18 +25,21 @@ public class Fuel {
     private int Km;
     @ColumnInfo
     private float total;
+    @ColumnInfo
+    private String date;
 
 
-    public Fuel(@NonNull long id,String idFuelCar, float price, float litres, int km, float total) {
+    public Fuel(@NonNull long id,String idFuelCar, float price, float litres, int km, String date, float total) {
         this.id = id;
         this.idFuelCar = idFuelCar;
         this.price = price;
         this.litres = litres;
         this.Km = km;
+        this.date = date;
         this.total = total;
     }
 
-    public Fuel(String idFuelCar, float price, float litres, int km, float total) {
+    public Fuel(String idFuelCar, float price, float litres, int km,String date, float total) {
         this.idFuelCar = idFuelCar;
         this.price = price;
         this.litres = litres;
@@ -91,5 +94,13 @@ public class Fuel {
 
     public void setTotal(float total) {
         this.total = total;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }

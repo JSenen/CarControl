@@ -16,7 +16,7 @@ public class Cars {
     @ColumnInfo
     public String model;
     @ColumnInfo
-    public String year; //TODO Arreglar fechas
+    public String year;
     @ColumnInfo
     public int km;
 

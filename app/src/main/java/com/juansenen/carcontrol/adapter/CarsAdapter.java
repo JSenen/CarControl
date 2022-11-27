@@ -44,7 +44,7 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.CarsHolder> {
         holder.txtregister.setText(carsList.get(position).getRegister());
         holder.txttrademrk.setText(carsList.get(position).getTrademark());
         holder.txtmodel.setText(carsList.get(position).getModel());
-        holder.txtyear.setText(String.valueOf(carsList.get(position).getYear()));
+        holder.txtyear.setText(carsList.get(position).getYear());
         holder.txtkm.setText(String.valueOf(carsList.get(position).getKm()));
 
 

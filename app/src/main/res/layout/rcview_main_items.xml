@@ -10,7 +10,7 @@
     android:layout_marginRight="6dp"
     android:layout_marginBottom="6dp"
     app:cardBackgroundColor="@color/cardview_shadow_end_color"
-    app:cardElevation="6dp"
+    app:cardElevation="10dp"
     >
 
     <LinearLayout
@@ -18,25 +18,18 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="10dp"
-        android:background="#a3d6a5">
+        android:background="#f1f8e9">
 
         <TextView
             android:id="@+id/txtview_register"
             style="@style/Widget.MaterialComponents.TextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/register"
+            android:text="@string/registercar"
             android:textAlignment="center"
             android:textColor="#009688"
             android:textSize="20dp"
             android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/txtview_year"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TextView"
-            android:textSize="16dp" />
 
         <TextView
             android:id="@+id/txtview_trdmark"
@@ -44,7 +37,7 @@
             android:layout_height="wrap_content"
             android:text="TextView"
             android:textAlignment="textStart"
-            android:textColor="#3F51B5"
+            android:textColor="#000000"
             android:textSize="16dp"
             android:textStyle="bold" />
 
@@ -53,7 +46,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="TextView"
-            android:textColor="#3F51B5"
+            android:textColor="#000000"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/txtview_year"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
             android:textSize="16dp" />
 
         <TextView

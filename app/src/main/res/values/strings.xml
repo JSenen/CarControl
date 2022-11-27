@@ -15,4 +15,11 @@
     <string name="registercar">Matricula</string>
     <string name="addnow">Añadir</string>
     <string name="km">Km</string>
+    <string name="Added">Añadido</string>
+    <string name="model">Modelo</string>
+    <string name="date">Fecha</string>
+    <string name="trademark">Marca</string>
+    <string name="price">Precio</string>
+    <string name="Litres">Litros</string>
+    <string name="litre_price">Precio / Litro</string>
 </resources>

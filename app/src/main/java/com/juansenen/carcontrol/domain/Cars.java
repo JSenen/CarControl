@@ -16,7 +16,7 @@ public class Cars {
     @ColumnInfo
     public String model;
     @ColumnInfo
-    public int year; //TODO Arreglar fechas
+    public String year;
     @ColumnInfo
     public int km;
 
@@ -24,7 +24,7 @@ public class Cars {
 
     public Cars() {}
 
-    public Cars(String register, String trademark, String model, int year, int km) {
+    public Cars(String register, String trademark, String model, String year, int km) {
         this.register = register;
         this.trademark = trademark;
         this.model = model;
@@ -57,11 +57,11 @@ public class Cars {
         this.model = model;
     }
 
-    public int getYear() {
+    public String getYear() {
         return year;
     }
 
-    public void setYear(int year) {
+    public void setYear(String year) {
         this.year = year;
     }
 

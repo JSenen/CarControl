@@ -18,37 +18,67 @@
             android:id="@+id/txt_review_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Matricula"
+            android:text="@string/registercar"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
             android:textColor="#009688" />
 
-        <EditText
-            android:id="@+id/edt_addreview_date"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/review_add_layout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Fecha"
-            android:inputType="textPersonName" />
+            android:hint="@string/date"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <EditText
-            android:id="@+id/edt_addreview_km"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt_addreview_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="date"
+                android:focusable="false"
+                android:clickable="true"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/review_addkm_layout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Km"
-            android:inputType="textPersonName" />
+            android:hint="@string/km"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <EditText
-            android:id="@+id/edt_addreview_price"
-            style="@android:style/Widget.Material.NumberPicker"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt_addreview_km"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/review_addprice_layout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Precio"
-            android:inputType="numberDecimal" />
+            android:hint="@string/price"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt_addreview_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+               />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <LinearLayout
             android:layout_width="match_parent"

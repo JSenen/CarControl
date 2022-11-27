@@ -20,7 +20,7 @@ public class Reviews {
     @ColumnInfo
     public String idReviewCar;
     @ColumnInfo
-    public String fecha; //TODO Arreglar fechas
+    public String fecha;
     @ColumnInfo
     public int kmreview;
     @ColumnInfo

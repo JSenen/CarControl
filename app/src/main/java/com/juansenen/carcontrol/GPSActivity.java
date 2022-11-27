@@ -114,7 +114,7 @@ public class GPSActivity extends AppCompatActivity {
 
         // Initializing LocationRequest
         // object with appropriate methods
-        LocationRequest mLocationRequest = new LocationRequest();
+        LocationRequest mLocationRequest = LocationRequest.create();
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         mLocationRequest.setInterval(5);
         mLocationRequest.setFastestInterval(0);
@@ -189,9 +189,9 @@ public class GPSActivity extends AppCompatActivity {
     }
     private void setCameraPosition(double latitude, double longitude){
         CameraOptions cameraPosition = new CameraOptions.Builder()
-                .center(Point.fromLngLat(longitude, latitude))
+                .center(Point.fromLngLat(longitude,latitude))
                 .pitch(45.0)
-                .zoom(15.5)
+                .zoom(9.1)
                 .bearing(-17.6)
                 .build();
         mapview.getMapboxMap().setCamera(cameraPosition);

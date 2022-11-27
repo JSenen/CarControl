@@ -18,7 +18,7 @@
             android:id="@+id/txt_review_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Matricula"
+            android:text="@string/registercar"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
             android:textColor="#009688" />
@@ -29,8 +29,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Fecha"
-            android:inputType="textPersonName" />
+            android:hint="@string/date"
+            android:inputType="date"
+            android:focusable="false"
+            android:clickable="true"
+            />
 
         <EditText
             android:id="@+id/edt_addreview_km"
@@ -47,7 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Precio"
+            android:hint="@string/price"
             android:inputType="numberDecimal" />
 
         <LinearLayout

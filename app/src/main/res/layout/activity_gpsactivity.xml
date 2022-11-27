@@ -6,14 +6,14 @@
     android:layout_height="match_parent">
 
     <com.mapbox.maps.MapView
-    android:id="@+id/mapViewPark"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:mapbox_cameraTargetLat="40.48205"
-    app:mapbox_cameraTargetLng="-3.35996"
-    app:mapbox_cameraZoom="12.0"
+        android:id="@+id/mapviewgps"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:mapbox_cameraTargetLat="40.48205"
+        app:mapbox_cameraTargetLng="-3.35996"
+        app:mapbox_cameraZoom="12.0"
         android:padding="10dp"
-    >
+        >
     </com.mapbox.maps.MapView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

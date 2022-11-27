@@ -57,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
         carsList.addAll(db.carsDAO().getAll());
         adapter.notifyDataSetChanged();
 
-
     }
 
     @Override
@@ -74,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
             return true;
         }else if (item.getItemId() == R.id.actbar_map) {
-            Intent intent = new Intent(this, LastParkActivity.class);
+            Intent intent = new Intent(this, GPSActivity.class);
             startActivity(intent);
             //TODO item action bar dirigirse a GPS Activity
         }

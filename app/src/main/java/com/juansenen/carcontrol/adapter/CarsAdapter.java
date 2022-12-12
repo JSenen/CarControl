@@ -1,6 +1,8 @@
 package com.juansenen.carcontrol.adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +12,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import com.juansenen.carcontrol.AddFuelActivity;
 import com.juansenen.carcontrol.AddReviewActivity;
@@ -18,6 +21,7 @@ import com.juansenen.carcontrol.DetailReviewActivity;
 import com.juansenen.carcontrol.LastParkActivity;
 import com.juansenen.carcontrol.MapParkActivity;
 import com.juansenen.carcontrol.R;
+import com.juansenen.carcontrol.db.AppDatabase;
 import com.juansenen.carcontrol.domain.Cars;
 
 import java.util.List;
@@ -67,6 +71,8 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.CarsHolder> {
         public ImageButton imgaddfuel;
         public ImageButton imgaddreview;
         public ImageButton imgaddparking;
+        public ImageButton imgdeletecar;
+
         public View parentview;
 
         public CarsHolder(View view) {
@@ -96,6 +102,10 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.CarsHolder> {
 
             goParking = view.findViewById(R.id.butlastpark);
             goParking.setOnClickListener(view1 -> goLastParking(getAdapterPosition()));
+
+            imgdeletecar = view.findViewById(R.id.imgbut_delcar);
+            imgdeletecar.setOnClickListener(view1 -> deleteCar(getAdapterPosition()));
+
 
 
 
@@ -147,6 +157,27 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.CarsHolder> {
             intent.putExtra("register", car.getRegister());
             contex.startActivity(intent);
         }
+
+        public void deleteCar(int position) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(contex);
+            builder.setMessage(R.string.delete_car_question)
+                    .setTitle(R.string.delete_car)
+                    .setPositiveButton(R.string.do_it, (dialog, id) -> {
+                        final AppDatabase db = Room.databaseBuilder(contex, AppDatabase.class, "cars")
+                                .allowMainThreadQueries().build();
+                        Cars car = carsList.get(position);
+                        db.carsDAO().delete(car);
+
+                        carsList.remove(position);
+                        notifyItemRemoved(position);
+                    })
+                    .setNegativeButton((R.string.cancel), (dialog, id) -> dialog.dismiss());
+            AlertDialog dialog = builder.create();
+            dialog.show();
+
+        }
+
+
 
     }
 }

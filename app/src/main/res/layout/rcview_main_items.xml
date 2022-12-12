@@ -78,13 +78,19 @@
                 android:id="@+id/imgbut_addreview"
                 android:layout_width="59dp"
                 android:layout_height="match_parent"
-                app:srcCompat="@mipmap/ic_taller_foreground" />
+                app:srcCompat="@drawable/ic__car_repair" />
 
             <ImageButton
                 android:id="@+id/imgbut_addpark"
                 android:layout_width="43dp"
                 android:layout_height="match_parent"
                 app:srcCompat="@mipmap/ic_parking_foreground" />
+
+            <ImageButton
+                android:id="@+id/imgbut_delcar"
+                android:layout_width="43dp"
+                android:layout_height="match_parent"
+                app:srcCompat="@android:drawable/ic_menu_delete" />
 
 
         </LinearLayout>

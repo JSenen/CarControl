@@ -30,4 +30,6 @@
     <string name="delete_car">Elimininar vehiculo</string>
     <string name="do_it">Aceptar</string>
     <string name="cancel">Cancelar</string>
+    <string name="Update">Actualizar</string>
+    <string name="Updated">Actualizado</string>
 </resources>

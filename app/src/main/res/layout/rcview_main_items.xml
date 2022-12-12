@@ -88,9 +88,15 @@
 
             <ImageButton
                 android:id="@+id/imgbut_delcar"
-                android:layout_width="43dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 app:srcCompat="@android:drawable/ic_menu_delete" />
+
+            <ImageButton
+                android:id="@+id/imgbut_updatecar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@android:drawable/ic_menu_edit" />
 
 
         </LinearLayout>

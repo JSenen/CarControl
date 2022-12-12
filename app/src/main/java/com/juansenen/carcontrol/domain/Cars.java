@@ -1,9 +1,12 @@
 package com.juansenen.carcontrol.domain;
 
+import android.accounts.OnAccountsUpdateListener;
+
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import androidx.room.Update;
 
 @Entity(tableName = "cars")
 public class Cars {
@@ -32,6 +35,12 @@ public class Cars {
         this.km = km;
     }
 
+    public Cars(String trademark, String model, String year, int km) {
+        this.trademark = trademark;
+        this.model = model;
+        this.year = year;
+        this.km = km;
+    }
 
     public String getRegister() {
         return register;

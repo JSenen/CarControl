@@ -1,5 +1,7 @@
 package com.juansenen.carcontrol.adapter;
 
+import static com.juansenen.carcontrol.db.Constans.DATABASE_NAME;
+
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -21,6 +23,7 @@ import com.juansenen.carcontrol.DetailReviewActivity;
 import com.juansenen.carcontrol.LastParkActivity;
 import com.juansenen.carcontrol.MapParkActivity;
 import com.juansenen.carcontrol.R;
+import com.juansenen.carcontrol.UpdateCarActivity;
 import com.juansenen.carcontrol.db.AppDatabase;
 import com.juansenen.carcontrol.domain.Cars;
 
@@ -72,6 +75,7 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.CarsHolder> {
         public ImageButton imgaddreview;
         public ImageButton imgaddparking;
         public ImageButton imgdeletecar;
+        public ImageButton imgupdatecar;
 
         public View parentview;
 
@@ -105,6 +109,9 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.CarsHolder> {
 
             imgdeletecar = view.findViewById(R.id.imgbut_delcar);
             imgdeletecar.setOnClickListener(view1 -> deleteCar(getAdapterPosition()));
+
+            imgupdatecar = view.findViewById(R.id.imgbut_updatecar);
+            imgupdatecar.setOnClickListener(view1 -> updateCar(getAdapterPosition()));
 
 
 
@@ -163,7 +170,7 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.CarsHolder> {
             builder.setMessage(R.string.delete_car_question)
                     .setTitle(R.string.delete_car)
                     .setPositiveButton(R.string.do_it, (dialog, id) -> {
-                        final AppDatabase db = Room.databaseBuilder(contex, AppDatabase.class, "cars")
+                        final AppDatabase db = Room.databaseBuilder(contex, AppDatabase.class, DATABASE_NAME)
                                 .allowMainThreadQueries().build();
                         Cars car = carsList.get(position);
                         db.carsDAO().delete(car);
@@ -174,10 +181,15 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.CarsHolder> {
                     .setNegativeButton((R.string.cancel), (dialog, id) -> dialog.dismiss());
             AlertDialog dialog = builder.create();
             dialog.show();
-
         }
 
+        public void updateCar (int position) {
+            Cars car = carsList.get(position);
 
+            Intent intent = new Intent(contex, UpdateCarActivity.class);
+            intent.putExtra("register", car.getRegister());
+            contex.startActivity(intent);
 
+        }
     }
 }

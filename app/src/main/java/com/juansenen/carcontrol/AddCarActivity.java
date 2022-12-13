@@ -8,12 +8,14 @@ import androidx.room.Room;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.juansenen.carcontrol.db.AppDatabase;
@@ -53,7 +55,6 @@ public class AddCarActivity extends AppCompatActivity implements View.OnClickLis
         EditText ed_trdmark = findViewById(R.id.edtxt_trdmark);
         EditText ed_model = findViewById(R.id.edtxt_model);
         EditText ed_km = findViewById(R.id.edtxt_kms);
-
 
         String register = ed_register.getText().toString();
         String trdmark = ed_trdmark.getText().toString();

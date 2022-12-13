@@ -7,12 +7,14 @@
     tools:context=".AddCarActivity">
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/matricula_layout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -25,8 +27,8 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
                 android:id="@+id/edtxt_register"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -42,8 +44,8 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
                 android:id="@+id/edtxt_trdmark"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -59,10 +61,11 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
                 android:id="@+id/edtxt_model"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/dateregister_layout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -78,10 +81,11 @@
                 android:id="@+id/edtxt_year"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="date"
+                android:clickable="true"
                 android:focusable="false"
-                android:clickable="true"/>
+                android:inputType="date" />
         </com.google.android.material.textfield.TextInputLayout>
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/km_layout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -94,21 +98,42 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
                 android:id="@+id/edtxt_kms"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
+
         <Button
             android:id="@+id/butAdd"
-            android:onClick="butAdd"
             style="?attr/materialButtonOutlinedStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:onClick="butAdd"
             android:text="@string/addnow"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/name_layout" />
+
+
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="411dp"
+        android:layout_height="325dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+        
+        <fragment
+            android:id="@+id/fragment_capture_imagen"
+            android:name="com.juansenen.carcontrol.FragmentPicture"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:layout="@layout/fragment_picture"/>
+
+        </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

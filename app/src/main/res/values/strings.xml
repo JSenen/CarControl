@@ -34,4 +34,6 @@
     <string name="Updated">Actualizado</string>
     <string name="Modify_car_question">¿Desea modificar el vehículo?</string>
     <string name="update_car_dialog_yes">Modificar</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

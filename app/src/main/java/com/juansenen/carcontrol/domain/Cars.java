@@ -22,6 +22,8 @@ public class Cars {
     public String year;
     @ColumnInfo
     public int km;
+    @ColumnInfo
+    public byte[] imagen;
 
 
 
@@ -80,5 +82,13 @@ public class Cars {
 
     public void setKm(int km) {
         this.km = km;
+    }
+
+    public byte[] getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(byte[] imagen) {
+        this.imagen = imagen;
     }
 }

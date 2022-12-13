@@ -1,5 +1,7 @@
 package com.juansenen.carcontrol.db;
 
+import static androidx.room.OnConflictStrategy.REPLACE;
+
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;

@@ -22,4 +22,16 @@
     <string name="price">Precio</string>
     <string name="Litres">Litros</string>
     <string name="litre_price">Precio / Litro</string>
+    <string name="delete">Eliminar</string>
+    <string name="modify">Modificar</string>
+    <string name="dialog_delete">DESEA ELIMINAR SEGURO</string>
+    <string name="dialog_eliminated">Se ha eliminado</string>
+    <string name="delete_car_question">¿Desea eliminar el vehiculo?</string>
+    <string name="delete_car">Elimininar vehiculo</string>
+    <string name="do_it">Aceptar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="Update">Actualizar</string>
+    <string name="Updated">Actualizado</string>
+    <string name="Modify_car_question">¿Desea modificar el vehículo?</string>
+    <string name="update_car_dialog_yes">Modificar</string>
 </resources>

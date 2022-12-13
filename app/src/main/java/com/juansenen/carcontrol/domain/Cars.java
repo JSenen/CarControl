@@ -8,6 +8,8 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import androidx.room.Update;
 
+import java.io.File;
+
 @Entity(tableName = "cars")
 public class Cars {
 
@@ -23,25 +25,28 @@ public class Cars {
     @ColumnInfo
     public int km;
     @ColumnInfo
-    public byte[] imagen;
-
+    public String imgPath;
 
 
     public Cars() {}
 
-    public Cars(String register, String trademark, String model, String year, int km) {
+    public Cars(String register, String trademark, String model, String year, int km, String imgPath) {
         this.register = register;
         this.trademark = trademark;
         this.model = model;
         this.year = year;
         this.km = km;
+        this.imgPath = imgPath;
+
     }
 
-    public Cars(String trademark, String model, String year, int km) {
+    public Cars(String trademark, String model, String year, int km, String imgPath) {
         this.trademark = trademark;
         this.model = model;
         this.year = year;
         this.km = km;
+        this.imgPath = imgPath;
+
     }
 
     public String getRegister() {
@@ -84,11 +89,11 @@ public class Cars {
         this.km = km;
     }
 
-    public byte[] getImagen() {
-        return imagen;
+    public String getImgPath() {
+        return imgPath;
     }
 
-    public void setImagen(byte[] imagen) {
-        this.imagen = imagen;
+    public void setImgPath(String imgPath) {
+        this.imgPath = imgPath;
     }
 }

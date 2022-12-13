@@ -28,9 +28,6 @@ public interface CarsDAO {
     @Delete
     void delete(Cars cars);
 
-    @Query("UPDATE cars SET trademark= :trade, model= :mode, year= :datebuy, km= :kms WHERE register= :register")
-    void update(String trade,String mode,String datebuy,int kms,String register);
-
     @Update
     void update(Cars cars);
 

@@ -32,4 +32,6 @@
     <string name="cancel">Cancelar</string>
     <string name="Update">Actualizar</string>
     <string name="Updated">Actualizado</string>
+    <string name="Modify_car_question">¿Desea modificar el vehículo?</string>
+    <string name="update_car_dialog_yes">Modificar</string>
 </resources>

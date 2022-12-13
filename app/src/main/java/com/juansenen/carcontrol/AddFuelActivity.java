@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.juansenen.carcontrol.db.AppDatabase;
+import com.juansenen.carcontrol.domain.Cars;
 import com.juansenen.carcontrol.domain.Fuel;
 import com.juansenen.carcontrol.util.DatePickerFragment;
 
@@ -25,6 +26,7 @@ public class AddFuelActivity extends AppCompatActivity implements View.OnClickLi
 
     private String matricula;
     private EditText editTextFecha;
+    private Cars car;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,13 @@ public class AddFuelActivity extends AppCompatActivity implements View.OnClickLi
             return;
         TextView txtregister = findViewById(R.id.txt_addfuel_id);
         txtregister.setText(matricula);
+
+        final AppDatabase db = Room.databaseBuilder(this,AppDatabase.class, DATABASE_NAME)
+                .allowMainThreadQueries().build();
+        car = db.carsDAO().getByRegister(matricula);
+        //Colocar los kilomentros actuales del coche
+        EditText editkm = findViewById(R.id.edtxt_addfuel_km);
+        editkm.setHint(String.valueOf(car.getKm()));
 
         editTextFecha = findViewById(R.id.edtxt_addfuel_date);
         editTextFecha.setOnClickListener(this);
@@ -66,12 +75,16 @@ public class AddFuelActivity extends AppCompatActivity implements View.OnClickLi
     }
     public void butaddfuel(View view){
 
+        final AppDatabase db = Room.databaseBuilder(this,AppDatabase.class, DATABASE_NAME)
+                .allowMainThreadQueries().build();
+        car = db.carsDAO().getByRegister(matricula);
+
         TextView txtregister = findViewById(R.id.txt_addfuel_id);
         txtregister.setText(matricula);
-
         EditText edtlitre = findViewById(R.id.edtxt_addfuel_litres);
         EditText edtprice = findViewById(R.id.edtxt_addfuel_price);
         EditText editkm = findViewById(R.id.edtxt_addfuel_km);
+        editkm.setHint(String.valueOf(car.getKm()));
 
         float litre = Float.parseFloat(edtlitre.getText().toString());
         float price = Float.parseFloat(edtprice.getText().toString());
@@ -80,15 +93,17 @@ public class AddFuelActivity extends AppCompatActivity implements View.OnClickLi
         String date = editTextFecha.getText().toString();
 
         Fuel fuel = new Fuel(matricula, price, litre, km, date, total);
-        final AppDatabase db = Room.databaseBuilder(this,AppDatabase.class, DATABASE_NAME)
-                .allowMainThreadQueries().build();
+        //Añadir repostaje
         db.fuelDAO().insert(fuel);
+        //Actualizar km del vehiculo
+        car.setKm(km);
+        db.carsDAO().update(car);
 
         Toast.makeText(this,R.string.add,Toast.LENGTH_SHORT).show();
 
         edtlitre.setText("");
         edtprice.setText("");
-        editkm.setText("");
+        editkm.setHint(String.valueOf(car.getKm()));
         editTextFecha.setText("");
         edtlitre.requestFocus();
     }

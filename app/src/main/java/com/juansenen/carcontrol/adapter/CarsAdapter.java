@@ -5,11 +5,14 @@ import static com.juansenen.carcontrol.db.Constans.DATABASE_NAME;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -52,8 +55,7 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.CarsHolder> {
         holder.txtmodel.setText(carsList.get(position).getModel());
         holder.txtyear.setText(carsList.get(position).getYear());
         holder.txtkm.setText(String.valueOf(carsList.get(position).getKm()));
-
-
+        holder.imgencar.setImageURI(Uri.parse(carsList.get(position).getImgPath()));
     }
 
     @Override
@@ -70,6 +72,7 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.CarsHolder> {
         public Button detailfuel;
         public Button detailreviews;
         public Button goParking;
+        public ImageView imgencar;
         public ImageButton imgaddfuel;
         public ImageButton imgaddreview;
         public ImageButton imgaddparking;
@@ -87,6 +90,7 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.CarsHolder> {
             txtmodel = view.findViewById(R.id.txtview_model);
             txtyear = view.findViewById(R.id.txtview_year);
             txtkm = view.findViewById(R.id.txtview_km);
+            imgencar = view.findViewById(R.id.recview_imgcar);
 
             imgaddfuel = view.findViewById(R.id.imgbut_addfuel);
             imgaddfuel.setOnClickListener(view1 -> addFuelCar(getAdapterPosition()));

@@ -40,6 +40,7 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.CarsHolder> {
         this.contex = contex;
         this.carsList = carsList;
 
+
     }
 
     @Override
@@ -55,7 +56,13 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.CarsHolder> {
         holder.txtmodel.setText(carsList.get(position).getModel());
         holder.txtyear.setText(carsList.get(position).getYear());
         holder.txtkm.setText(String.valueOf(carsList.get(position).getKm()));
-        holder.imgencar.setImageURI(Uri.parse(carsList.get(position).getImgPath()));
+
+        //Si ruta imagen no esta cargada, se carga imagen por defecto
+        if ((carsList.get(position).getImgPath()) == null){
+            holder.imgencar.setImageResource(R.drawable.img_base);
+        }else{
+            holder.imgencar.setImageURI(Uri.parse(carsList.get(position).getImgPath()));
+        }
     }
 
     @Override

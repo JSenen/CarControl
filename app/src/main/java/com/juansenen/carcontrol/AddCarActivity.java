@@ -130,8 +130,6 @@ public class AddCarActivity extends AppCompatActivity implements View.OnClickLis
             km = 0;
         }
 
-
-
         Cars car = new Cars(register, trdmark, model, year, km, pathReal);
         car.setImgPath(pathReal);
 

@@ -1,12 +1,11 @@
 package com.juansenen.carcontrol.domain;
 
-import android.accounts.OnAccountsUpdateListener;
+import android.net.Uri;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-import androidx.room.Update;
 
 @Entity(tableName = "cars")
 public class Cars {
@@ -22,24 +21,27 @@ public class Cars {
     public String year;
     @ColumnInfo
     public int km;
-
+    @ColumnInfo
+    public String imgPath = "";
 
 
     public Cars() {}
 
-    public Cars(String register, String trademark, String model, String year, int km) {
+    public Cars(String register, String trademark, String model, String year, int km, String imgPath) {
         this.register = register;
         this.trademark = trademark;
         this.model = model;
         this.year = year;
         this.km = km;
+
     }
 
-    public Cars(String trademark, String model, String year, int km) {
+    public Cars(String trademark, String model, String year, int km, String imgPath) {
         this.trademark = trademark;
         this.model = model;
         this.year = year;
         this.km = km;
+
     }
 
     public String getRegister() {
@@ -80,5 +82,13 @@ public class Cars {
 
     public void setKm(int km) {
         this.km = km;
+    }
+
+    public String getImgPath() {
+        return imgPath;
+    }
+
+    public void setImgPath(String imgPath) {
+        this.imgPath = imgPath;
     }
 }

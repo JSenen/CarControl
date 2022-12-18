@@ -199,7 +199,7 @@ public class GPSActivity extends AppCompatActivity {
     }
     private void addMarker(double latitude, double longitude) {
         PointAnnotationOptions pointAnnotationOptions = new PointAnnotationOptions()
-                .withPoint(Point.fromLngLat(longitude, latitude))
+                .withPoint(Point.fromLngLat(longitude,latitude))
                 .withIconImage(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_parking_foreground));
 
         pointAnnotationManager.create(pointAnnotationOptions);

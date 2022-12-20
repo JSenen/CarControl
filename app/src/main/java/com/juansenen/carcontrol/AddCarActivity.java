@@ -14,7 +14,9 @@ import androidx.core.content.ContextCompat;
 import androidx.room.Room;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -60,8 +62,10 @@ public class AddCarActivity extends AppCompatActivity implements View.OnClickLis
 
         //Creamos un listener del Boton cargar imagen
         btnLoadImg.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
+
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
                     //Verifica permisos para Android 6.0+
                     checkExternalStoragePermission();
@@ -103,15 +107,24 @@ public class AddCarActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_back, menu);
+        getMenuInflater().inflate(R.menu.menu_takephoto, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-        return true;
+
+        if (item.getItemId() == R.id.actbar_photo) {
+            Intent intent = new Intent(this, TakePhotoActivity.class);
+            startActivity(intent);
+            return true;
+        }else if (item.getItemId() == R.id.actbar_back) {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        }
+        return false;
     }
+
 
     public void butAdd(View view) {
 

@@ -3,8 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/actbar_photo"
         android:icon="@android:drawable/ic_menu_camera"
         android:title="Item_takephoto"
-        android:visible="false"
         app:showAsAction="always" />
 </menu>

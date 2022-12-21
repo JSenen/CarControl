@@ -56,6 +56,7 @@ public class AddCarActivity extends AppCompatActivity implements View.OnClickLis
         btnLoadImg = findViewById(R.id.btnCargarImg);
         imgCarga = findViewById(R.id.imagemId);
 
+
         //Creamos un listener del Boton cargar imagen
         btnLoadImg.setOnClickListener(new View.OnClickListener() {
 
@@ -75,6 +76,7 @@ public class AddCarActivity extends AppCompatActivity implements View.OnClickLis
         editTFecha.setOnClickListener(this);
 
     }
+
     //Metodo para recibir la ruta de la imagen al pulsar el botón
     ActivityResultLauncher<Intent> camaraLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {

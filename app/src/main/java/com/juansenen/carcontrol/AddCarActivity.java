@@ -106,6 +106,7 @@ public class AddCarActivity extends AppCompatActivity implements View.OnClickLis
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_back, menu);
         getMenuInflater().inflate(R.menu.menu_takephoto, menu);
+        getMenuInflater().inflate(R.menu.menu_home, menu);
         return true;
     }
 
@@ -119,6 +120,11 @@ public class AddCarActivity extends AppCompatActivity implements View.OnClickLis
         }else if (item.getItemId() == R.id.actbar_back) {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
+            return true;
+        }else if(item.getItemId() == R.id.item_home){
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            return true;
         }
         return false;
     }

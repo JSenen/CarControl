@@ -205,14 +205,22 @@ public class TakePhotoActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_back, menu);
+        getMenuInflater().inflate(R.menu.menu_home, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
-        Intent intent = new Intent(this, AddCarActivity.class);
-        startActivity(intent);
+        if (item.getItemId() == R.id.actbar_back){
+            Intent intent = new Intent(this, AddCarActivity.class);
+            startActivity(intent);
+            return true;
+        }else if(item.getItemId() == R.id.item_home){
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            return true;
+        }
         return false;
     }
 

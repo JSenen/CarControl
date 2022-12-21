@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_addcar,menu);
+        getMenuInflater().inflate(R.menu.menu_takephoto, menu);
         return true;
 
     }
@@ -75,6 +76,10 @@ public class MainActivity extends AppCompatActivity {
         }else if (item.getItemId() == R.id.actbar_map) {
             Intent intent = new Intent(this, GPSActivity.class);
             startActivity(intent);
+        }else if(item.getItemId() == R.id.actbar_photo){
+            Intent intent = new Intent(this, TakePhotoActivity.class);
+            startActivity(intent);
+            return true;
         }
         return false;
     }

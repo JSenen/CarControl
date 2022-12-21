@@ -22,7 +22,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -57,16 +56,17 @@ public class AddCarActivity extends AppCompatActivity implements View.OnClickLis
         btnLoadImg = findViewById(R.id.btnCargarImg);
         imgCarga = findViewById(R.id.imagemId);
 
-
         //Creamos un listener del Boton cargar imagen
         btnLoadImg.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
+
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
                     //Verifica permisos para Android 6.0+
                     checkExternalStoragePermission();
                 }
-                camaraLaucher.launch(new Intent(Intent.ACTION_PICK,MediaStore.Images.Media.EXTERNAL_CONTENT_URI));
+                camaraLauncher.launch(new Intent(Intent.ACTION_PICK,MediaStore.Images.Media.EXTERNAL_CONTENT_URI));
 
             }
         });
@@ -76,7 +76,7 @@ public class AddCarActivity extends AppCompatActivity implements View.OnClickLis
 
     }
     //Metodo para recibir la ruta de la imagen al pulsar el botón
-    ActivityResultLauncher<Intent> camaraLaucher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+    ActivityResultLauncher<Intent> camaraLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
                 @Override
                 public void onActivityResult(ActivityResult result) {
@@ -103,15 +103,24 @@ public class AddCarActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_back, menu);
+        getMenuInflater().inflate(R.menu.menu_takephoto, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-        return true;
+
+        if (item.getItemId() == R.id.actbar_photo) {
+            Intent intent = new Intent(this, TakePhotoActivity.class);
+            startActivity(intent);
+            return true;
+        }else if (item.getItemId() == R.id.actbar_back) {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        }
+        return false;
     }
+
 
     public void butAdd(View view) {
 
@@ -198,4 +207,6 @@ public class AddCarActivity extends AppCompatActivity implements View.OnClickLis
 
         newFragment.show(getSupportFragmentManager(), "datePicker");
     }
+
+
 }

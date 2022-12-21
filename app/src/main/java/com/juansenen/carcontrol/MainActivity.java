@@ -75,7 +75,6 @@ public class MainActivity extends AppCompatActivity {
         }else if (item.getItemId() == R.id.actbar_map) {
             Intent intent = new Intent(this, GPSActivity.class);
             startActivity(intent);
-            //TODO item action bar dirigirse a GPS Activity
         }
         return false;
     }

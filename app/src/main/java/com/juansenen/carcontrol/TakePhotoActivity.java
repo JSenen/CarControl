@@ -8,14 +8,19 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.FileProvider;
 
+import android.Manifest;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.media.MediaScannerConnection;
@@ -40,16 +45,15 @@ import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import lombok.ToString;
+
 public class TakePhotoActivity extends AppCompatActivity {
 
-    private final String RUTA_IMAGEN = "Pictures/"; //Carpeta Raiz Galeria de Imagenes
+    private static final int REQUEST_PERMISSION_CAMERA = 100;
+    private final String RUTA_IMAGEN = "Pictures"; //Carpeta Raiz Galeria de Imagenes
     private Button btnTakePhoto;
-    private Uri pathImagen;
     private ImageView imageView;
     private String path;
-    public String rutaImagen;
-    public Bitmap bitmap;
-    public TextView textPathPrueba;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,20 +62,23 @@ public class TakePhotoActivity extends AppCompatActivity {
 
         btnTakePhoto = findViewById(R.id.btnTakePhoto);
         imageView = findViewById(R.id.imgView_takephoto);
-        textPathPrueba = findViewById(R.id.textViewPRUEBA);
+
         //Creamos un listener del Boton cargar imagen
         btnTakePhoto.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
 
-                validatePermisos(); //Validación permisos camara
+                //Validación permisos camara
+                validatePermisos();
+                //Intent para delegar la función a la cámara
                 takeCamara.launch(new Intent(MediaStore.ACTION_IMAGE_CAPTURE));
                 takePhoto();
-
             }
         });
+
     }
+    //Intent recibe la fotografía
     ActivityResultLauncher<Intent> takeCamara = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
                 @Override
@@ -90,53 +97,15 @@ public class TakePhotoActivity extends AppCompatActivity {
                     Bundle extras = result.getData().getExtras();
                     Bitmap imgBitmap = (Bitmap) extras.get("data");
                     imageView.setImageBitmap(imgBitmap);
+
                     try {
-                        saveImage(imgBitmap);
+                        saveImage(imgBitmap); //Guardamos imagen en galeria
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    textPathPrueba.setText(path);
-
-
                 }
             });
 
-    private void saveImage(Bitmap bitmap) throws IOException {
-        String folderName = "Cars";
-        String imageName = new SimpleDateFormat("ddMMyyyy_HHmm").format(new Date());
-        String mimeType = "image/jpeg";
-
-        OutputStream fos;
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            ContentResolver resolver = getContentResolver();
-            ContentValues contentValues = new ContentValues();
-            contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, imageName);
-            contentValues.put(MediaStore.MediaColumns.MIME_TYPE, mimeType);
-            contentValues.put(MediaStore.MediaColumns.RELATIVE_PATH, "DCIM/" + folderName);
-            Uri imageUri = resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
-            fos = resolver.openOutputStream(imageUri);
-        } else {
-            String imagesDir = Environment
-                    .getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM)
-                    .toString() + File.separator + folderName;
-
-            File file = new File(imagesDir);
-
-            if (!file.exists()) {
-                if (!file.mkdirs()) {
-
-                }
-            }
-
-            File imageFile = new File(imagesDir, imageName + ".jpeg");
-            fos = new FileOutputStream(imageFile);
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
-            fos.flush();
-            fos.close();
-        }
-
-    }
 
     //Comprobar permisos para leer escribir
     private boolean validatePermisos() {
@@ -156,6 +125,42 @@ public class TakePhotoActivity extends AppCompatActivity {
         }
         return false;
     }
+    private void saveImage(Bitmap bitmap) throws IOException {
+        String folderName = "Cars";
+        String imageName = new SimpleDateFormat("ddMMyyyy_HHmm").format(new Date());
+        String mimeType = "image/jpeg";
+
+        OutputStream fos;
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            ContentResolver resolver = getContentResolver();
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(MediaStore.Images.Media.DISPLAY_NAME, imageName);
+            contentValues.put(MediaStore.Images.Media.MIME_TYPE, mimeType);
+            contentValues.put(MediaStore.Images.Media.RELATIVE_PATH, "DCIM/" + folderName);
+            Uri imageUri = resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
+            fos = resolver.openOutputStream(imageUri);
+        } else {
+            String imagesDir = Environment
+                    .getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM)
+                    .toString() + File.separator + folderName;
+
+            File file = new File(imagesDir);
+
+            if (!file.exists()) {
+                if (!file.mkdirs()) {
+
+                }
+            }
+
+            File imageFile = new File(imagesDir, imageName + ".jpeg");
+            fos = new FileOutputStream(imageFile);
+        }
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+        fos.flush();
+        fos.close();
+    }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -188,7 +193,7 @@ public class TakePhotoActivity extends AppCompatActivity {
             isCreada = fileImagen.mkdirs();
         }
         if (isCreada == true) {
-            nombreImagen = (System.currentTimeMillis()/100)+".jpg";
+            nombreImagen = (System.currentTimeMillis()/100)+".jpeg";
         }
         path = Environment.getExternalStorageDirectory()+File.separator+RUTA_IMAGEN+File.separator+nombreImagen;
         File imagen = new File(path);
@@ -203,9 +208,9 @@ public class TakePhotoActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
-            Intent intent = new Intent(this, AddCarActivity.class);
-            startActivity(intent);
-            return false;
+        Intent intent = new Intent(this, AddCarActivity.class);
+        startActivity(intent);
+        return false;
     }
 
 }

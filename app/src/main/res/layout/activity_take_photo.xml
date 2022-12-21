@@ -30,12 +30,6 @@
             android:text="@string/take_photo"
             android:textColor="#ffff" />
 
-        <TextView
-            android:id="@+id/textViewPRUEBA"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
-
     </LinearLayout>
 
 

@@ -14,9 +14,7 @@ import androidx.core.content.ContextCompat;
 import androidx.room.Room;
 
 import android.Manifest;
-import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -24,7 +22,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -59,7 +56,6 @@ public class AddCarActivity extends AppCompatActivity implements View.OnClickLis
         btnLoadImg = findViewById(R.id.btnCargarImg);
         imgCarga = findViewById(R.id.imagemId);
 
-
         //Creamos un listener del Boton cargar imagen
         btnLoadImg.setOnClickListener(new View.OnClickListener() {
 
@@ -70,7 +66,7 @@ public class AddCarActivity extends AppCompatActivity implements View.OnClickLis
                     //Verifica permisos para Android 6.0+
                     checkExternalStoragePermission();
                 }
-                camaraLaucher.launch(new Intent(Intent.ACTION_PICK,MediaStore.Images.Media.EXTERNAL_CONTENT_URI));
+                camaraLauncher.launch(new Intent(Intent.ACTION_PICK,MediaStore.Images.Media.EXTERNAL_CONTENT_URI));
 
             }
         });
@@ -80,7 +76,7 @@ public class AddCarActivity extends AppCompatActivity implements View.OnClickLis
 
     }
     //Metodo para recibir la ruta de la imagen al pulsar el botón
-    ActivityResultLauncher<Intent> camaraLaucher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+    ActivityResultLauncher<Intent> camaraLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
                 @Override
                 public void onActivityResult(ActivityResult result) {
@@ -211,4 +207,6 @@ public class AddCarActivity extends AppCompatActivity implements View.OnClickLis
 
         newFragment.show(getSupportFragmentManager(), "datePicker");
     }
+
+
 }

@@ -37,6 +37,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -103,6 +105,7 @@ public class TakePhotoActivity extends AppCompatActivity {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
+                    Snackbar.make(imageView,"Imagen añadida a Galeria",Snackbar.LENGTH_LONG).show();
                 }
             });
 
@@ -137,7 +140,7 @@ public class TakePhotoActivity extends AppCompatActivity {
             ContentValues contentValues = new ContentValues();
             contentValues.put(MediaStore.Images.Media.DISPLAY_NAME, imageName);
             contentValues.put(MediaStore.Images.Media.MIME_TYPE, mimeType);
-            contentValues.put(MediaStore.Images.Media.RELATIVE_PATH, "DCIM/" + folderName);
+            contentValues.put(MediaStore.Images.Media.RELATIVE_PATH, "Pictures/" + folderName);
             Uri imageUri = resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
             fos = resolver.openOutputStream(imageUri);
         } else {

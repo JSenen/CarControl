@@ -2,22 +2,37 @@ package com.juansenen.carcontrol;
 
 import static com.juansenen.carcontrol.db.Constans.DATABASE_NAME;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.room.Room;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.juansenen.carcontrol.db.AppDatabase;
 import com.juansenen.carcontrol.domain.Cars;
 import com.juansenen.carcontrol.util.DatePickerFragment;
@@ -30,7 +45,11 @@ public class UpdateCarActivity extends AppCompatActivity implements View.OnClick
     private EditText editModel;
     private EditText editDate;
     private EditText editKm;
+    private ImageView imageCar;
+    private Button buttonCargarImg;
     private Cars car;
+    public Uri pathImagen;
+    public String pathReal;
 
 
     @Override
@@ -52,15 +71,67 @@ public class UpdateCarActivity extends AppCompatActivity implements View.OnClick
         editModel = findViewById(R.id.update_model);
         editDate = findViewById(R.id.update_datebuy);
         editKm = findViewById(R.id.update_kms);
+        imageCar = findViewById(R.id.imagemId_updatecar);
+        buttonCargarImg = findViewById(R.id.btnCargarImg_updateCar);
+
+        buttonCargarImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                    //Verifica permisos para Android 6.0+
+                    checkStoragePermission();
+                }
+                cameraLaunch.launch(new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI));
+            }
+        });
 
         txtRegister.setText(matricula);
         editTrade.setText(car.getTrademark());
         editModel.setText(car.getModel());
         editKm.setText(String.valueOf(car.getKm()));
+        imageCar.setImageURI(Uri.parse(car.getImgPath()));
 
         editDate.setText(car.getYear());
         editDate.setOnClickListener(this);
 
+    }
+    //Metodo para recibir la ruta de la imagen al pulsar el botón
+    ActivityResultLauncher<Intent> cameraLaunch = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result.getResultCode()==RESULT_OK){
+                        pathImagen = result.getData().getData();
+                        imageCar.setImageURI(pathImagen);
+                        pathReal = getRealPathFromURI(pathImagen);
+                        car.setImgPath(pathReal);
+                    }
+                }
+            });
+    //Comprobar permisos para leer escribir
+    private void checkStoragePermission() {
+        int permissionCheck = ContextCompat.checkSelfPermission(
+                this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 225);
+        } else {
+
+        }
+    }
+    //Obtener la path real  String de la imagen
+    private String getRealPathFromURI(Uri path) {
+        String result;
+        Cursor cursor = getContentResolver().query(path, null, null,null,null );
+        if(cursor == null ){
+            result = path.getPath();
+        }else{
+            cursor.moveToFirst();
+            int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
+            result = cursor.getString(idx);
+            cursor.close();
+        }
+        return result;
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -89,7 +160,7 @@ public class UpdateCarActivity extends AppCompatActivity implements View.OnClick
                     final AppDatabase db = Room.databaseBuilder(this, AppDatabase.class, DATABASE_NAME)
                             .allowMainThreadQueries().build();
                     db.carsDAO().update(car);
-                    Toast.makeText(this, R.string.Updated,Toast.LENGTH_LONG);
+                    Snackbar.make(imageCar,R.string.Updated,Snackbar.LENGTH_LONG).show();
                     Intent intent= new Intent (this, MainActivity.class);
                     startActivity(intent);
 

@@ -105,7 +105,7 @@ public class TakePhotoActivity extends AppCompatActivity {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    Snackbar.make(imageView,"Imagen añadida a Galeria",Snackbar.LENGTH_LONG).show();
+                    Snackbar.make(imageView, R.string.img_added_to_galery,Snackbar.LENGTH_LONG).show();
                 }
             });
 
@@ -177,9 +177,9 @@ public class TakePhotoActivity extends AppCompatActivity {
 
     private void cargarDialogoRecomendacion() {
         AlertDialog.Builder dialogo = new AlertDialog.Builder(TakePhotoActivity.this);
-        dialogo.setTitle("Permisos desactivados");
-        dialogo.setMessage("Debe aceptar permisos para el correcto uso app");
-        dialogo.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+        dialogo.setTitle(R.string.permissions_uncheked);
+        dialogo.setMessage(R.string.Check_permissions_for_use_app);
+        dialogo.setPositiveButton(R.string.accept, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 requestPermissions(new String[]{WRITE_EXTERNAL_STORAGE,CAMERA},100);

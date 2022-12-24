@@ -136,14 +136,22 @@ public class UpdateCarActivity extends AppCompatActivity implements View.OnClick
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_back,menu);
+        getMenuInflater().inflate(R.menu.menu_takephoto, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-        return true;
+        if(item.getItemId() == R.id.actbar_photo){
+            Intent intent = new Intent(this, TakePhotoActivity.class);
+            startActivity(intent);
+            return true;
+        }else if(item.getItemId() == R.id.item_home) {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        return false;
     }
 
     public void buttonUpdateCar(View view){

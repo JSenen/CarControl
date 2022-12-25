@@ -146,7 +146,7 @@ public class UpdateCarActivity extends AppCompatActivity implements View.OnClick
             Intent intent = new Intent(this, TakePhotoActivity.class);
             startActivity(intent);
             return true;
-        }else if(item.getItemId() == R.id.item_home) {
+        }else if(item.getItemId() == R.id.actbar_back) {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             return true;

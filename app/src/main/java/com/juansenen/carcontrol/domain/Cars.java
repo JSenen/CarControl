@@ -1,15 +1,15 @@
 package com.juansenen.carcontrol.domain;
 
-import android.net.Uri;
-
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+//Damos nombre a la tabla
 @Entity(tableName = "cars")
 public class Cars {
 
+    //Establecemos llave primaria
     @PrimaryKey
     @NonNull
     public String register;
@@ -22,6 +22,7 @@ public class Cars {
     @ColumnInfo
     public int km;
     @ColumnInfo
+    //Atributo path de la imagen le damos por defecto valor 0
     public String imgPath = "";
 
 

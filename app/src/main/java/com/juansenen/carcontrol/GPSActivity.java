@@ -43,13 +43,13 @@ import com.mapbox.maps.plugin.annotation.generated.PointAnnotationOptions;
 public class GPSActivity extends AppCompatActivity {
 
 
-    // initializing
+    // Inicializamos
     // FusedLocationProviderClient
-    // object
+    // objeto
     FusedLocationProviderClient mFusedLocationClient;
 
-    // Initializing other items
-    // from layout file
+    // Inicializamos otros elementos
+    // del layouy
     private double longitude;
     private double latitude;
     private MapView mapview;
@@ -61,30 +61,32 @@ public class GPSActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gpsactivity);
 
+        //recuperamos elemntos del layout
         mapview = findViewById(R.id.mapviewgps);
 
+        //Creamos la instancia al cliente proveedor de posicion en la Activity
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
-        // method to get the location
+        // Llamamos a los metodos para pbener la posicion
         getLastLocation();
         initializePointManager();
+        //Establecer el angulo de camara
         setCameraPosition(latitude, longitude);
+        //Llamada al metodo para colocar marcador
         addMarker(latitude, longitude);
 
     }
-
+    //Metodo obtencion posición
+    //Suprimimos avisos de no permisos a utilizar otra libreria que nos es del SDK Android
     @SuppressLint("MissingPermission")
     private void getLastLocation() {
-        // check if permissions are given
+        // Comprobamos que los permisos estan concedidos
         if (checkPermissions()) {
 
-            // check if location is enabled
+            // Comprobamos que la localizacion esta activada
             if (isLocationEnabled()) {
 
-                // getting last
-                // location from
-                // FusedLocationClient
-                // object
+                // Obtenemos la ultima localizacion del  FusedLocationClientobject
                 mFusedLocationClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
                     @Override
                     public void onComplete(@NonNull Task<Location> task) {
@@ -98,13 +100,14 @@ public class GPSActivity extends AppCompatActivity {
                     }
                 });
             } else {
+                //Aviso emergente si la localizacion no esta activada
                 Toast.makeText(this, "Please turn on" + " your location...", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
                 startActivity(intent);
             }
         } else {
-            // if permissions aren't available,
-            // request for permissions
+            // Si los permisos no estan dados
+            // solicitamos los permisos
             requestPermissions();
         }
     }
@@ -112,16 +115,16 @@ public class GPSActivity extends AppCompatActivity {
     @SuppressLint("MissingPermission")
     private void requestNewLocationData() {
 
-        // Initializing LocationRequest
-        // object with appropriate methods
+        // Inicializamos LocationRequest
+        // objeto con los metodos
         LocationRequest mLocationRequest = LocationRequest.create();
-        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY); //Alta precision
         mLocationRequest.setInterval(5);
         mLocationRequest.setFastestInterval(0);
         mLocationRequest.setNumUpdates(1);
 
-        // setting LocationRequest
-        // on FusedLocationClient
+        // Establecer LocationRequest
+        // en FusedLocationClient
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         mFusedLocationClient.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.myLooper());
     }
@@ -131,37 +134,38 @@ public class GPSActivity extends AppCompatActivity {
         @Override
         public void onLocationResult(LocationResult locationResult) {
             Location mLastLocation = locationResult.getLastLocation();
+            //Obtenemos localizacion
             latitude = mLastLocation.getLatitude();
             longitude = mLastLocation.getLongitude();
         }
     };
 
-    // method to check for permissions
+    // Metodo comprobar permisos
     private boolean checkPermissions() {
         return ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_BACKGROUND_LOCATION) == PackageManager.PERMISSION_GRANTED;
 
-        // If we want background location
-        // on Android 10.0 and higher,
-        // use:
+        // Para la localizacion en segundo plano
+        // en Android 10.0 y +
+        // usamos:
         // ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_BACKGROUND_LOCATION) == PackageManager.PERMISSION_GRANTED
-        //else add  ///&& ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED;
+        //si no añadimos  ///&& ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED;
     }
 
-    // method to request for permissions
+    // Metodo para solicitar los permisos
     private void requestPermissions() {
         ActivityCompat.requestPermissions(this, new String[]{
                 Manifest.permission.ACCESS_COARSE_LOCATION,
                 Manifest.permission.ACCESS_FINE_LOCATION}, PERMISSION_ID);
     }
 
-    // method to check
-    // if location is enabled
+    // Metodo para comprobar
+    // si la localizacion esta activada
     private boolean isLocationEnabled() {
         LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
     }
 
-    // If everything is alright then
+    // Si todo es correcto ....
     @Override
     public void
     onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -181,13 +185,14 @@ public class GPSActivity extends AppCompatActivity {
             getLastLocation();
         }
     }
-
+    //Metodo para inicializar el point en el mapa
     private void initializePointManager() {
         AnnotationPlugin annotationPlugin = AnnotationPluginImplKt.getAnnotations(mapview);
         AnnotationConfig annotationConfig = new AnnotationConfig();
         pointAnnotationManager = PointAnnotationManagerKt.createPointAnnotationManager(annotationPlugin, annotationConfig);
 
     }
+    //Metodo establece configutaciones de visualizacion de la camara
     private void setCameraPosition(double latitude, double longitude){
         CameraOptions cameraPosition = new CameraOptions.Builder()
                 .center(Point.fromLngLat(longitude,latitude))
@@ -198,6 +203,7 @@ public class GPSActivity extends AppCompatActivity {
         mapview.getMapboxMap().setCamera(cameraPosition);
 
     }
+    //Metodo para añadir marcador al mapa
     private void addMarker(double latitude, double longitude) {
         PointAnnotationOptions pointAnnotationOptions = new PointAnnotationOptions()
                 .withPoint(Point.fromLngLat(longitude,latitude))
@@ -205,6 +211,7 @@ public class GPSActivity extends AppCompatActivity {
 
         pointAnnotationManager.create(pointAnnotationOptions);
     }
+    //Metodo menus en la action bar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_back,menu);
@@ -213,6 +220,7 @@ public class GPSActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        //Al seleccionar en la action bar, regresa a la pantalla anterior
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         return true;

@@ -33,10 +33,12 @@ public class MainActivity extends AppCompatActivity {
 
         carsList = new ArrayList<>();
 
+        //Recuperamos el recyclerview del layout
         RecyclerView recyclerView = findViewById(R.id.rcview_main);
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
+        //Construimos el adapter del recyclerview
         adapter = new CarsAdapter(this,carsList);
         recyclerView.setAdapter(adapter);
 
@@ -45,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
+    //Al volver a la Activity principal, recuperamos los datos de la BD
     @Override
     protected void onResume() {
         super.onResume();
@@ -53,12 +55,15 @@ public class MainActivity extends AppCompatActivity {
         final AppDatabase db = Room.databaseBuilder(this,AppDatabase.class,DATABASE_NAME)
                 .allowMainThreadQueries().build();
 
+        //Limpiamos la lista de coches
         carsList.clear();
+        //Añadimos los coches de la BD
         carsList.addAll(db.carsDAO().getAll());
+        //Notificamos cambios al adapter
         adapter.notifyDataSetChanged();
 
     }
-
+    //Opciones de menu en la action bar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_addcar,menu);
@@ -70,13 +75,16 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         if (item.getItemId() == R.id.actbar_add) {
+            // Intent para añadir nuevo coche
             Intent intent = new Intent(this, AddCarActivity.class);
             startActivity(intent);
             return true;
         }else if (item.getItemId() == R.id.actbar_map) {
+            //Intent para ir a la Activity GPS (mapa)
             Intent intent = new Intent(this, GPSActivity.class);
             startActivity(intent);
         }else if(item.getItemId() == R.id.actbar_photo){
+            //Intent para tomar fotografia
             Intent intent = new Intent(this, TakePhotoActivity.class);
             startActivity(intent);
             return true;

@@ -13,19 +13,19 @@ import java.util.List;
 @Dao
 public interface CarsDAO {
 
-
+    //Obtener todos
     @Query("SELECT * FROM cars")
     List<Cars> getAll();
-
+    //Obtener por matricula
     @Query("SELECT * FROM cars WHERE register = :register")
     Cars getByRegister(String register);
-
+    //Añadir
     @Insert
     void insert(Cars cars);
-
+    //Borrar
     @Delete
     void delete(Cars cars);
-
+    //Actualizar
     @Update
     void update(Cars cars);
 

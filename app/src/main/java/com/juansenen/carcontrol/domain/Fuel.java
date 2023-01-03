@@ -6,6 +6,7 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
+//Damos nombre a la tabla y creamos la relación de 1:M entre coches y esta
 @Entity(tableName = "repostajes",
         foreignKeys = @ForeignKey(entity = Cars.class,
                 parentColumns = "register",
@@ -15,6 +16,7 @@ public class Fuel {
     @PrimaryKey(autoGenerate = true)
     @NonNull
     private long id;
+    //Este atributo es el que mantendra la relación entre las tablas
     @ColumnInfo
     private String idFuelCar;
     @ColumnInfo

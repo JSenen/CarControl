@@ -50,13 +50,16 @@ public class MapParkActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map_park);
 
+        //Recuperamos los elementos del layout
         mapView = findViewById(R.id.mapViewPark);
 
+        //Recuperamos el campo enviado por el recyclerview
         Intent intent = getIntent();
         matricula = intent.getStringExtra("register");
         if (matricula == null)
             return;
 
+        //Metodo para controlar el mapa y añadir marcador al pulsar sobre una posicion
         GesturesPlugin gesturesPlugin = GesturesUtils.getGestures(mapView);
         gesturesPlugin.addOnMapClickListener(point -> {
             delAllMakers();
@@ -74,7 +77,7 @@ public class MapParkActivity extends AppCompatActivity {
         pointAnnotationManager = PointAnnotationManagerKt.createPointAnnotationManager(annotationPlugin, annotationConfig);
 
     }
-
+    //Metodo para añadir marcador
     private void addMarketPoint(Point point) {
         PointAnnotationOptions pointAnnotationOptions = new PointAnnotationOptions()
                 .withPoint(point)
@@ -84,18 +87,22 @@ public class MapParkActivity extends AppCompatActivity {
 
         final AppDatabase db = Room.databaseBuilder(this,AppDatabase.class, DATABASE_NAME)
                 .allowMainThreadQueries().build();
+        //Insertamos en los campos de la base de datos la posicion
         db.parkDAO().insert(park);
 
+        //Snackbar emergente que nos indica posicion guardada
+        //Debemos asociarla a un elemento del activity, en este caso en mapview
         Snackbar mySnackbar = Snackbar.make(findViewById(R.id.mapViewPark),
                 R.string.save_position, Snackbar.LENGTH_SHORT);
         mySnackbar.show();
 
     }
-
+    //Borrar todos los marcadores
     private void delAllMakers() {
         pointAnnotationManager.deleteAll();
     }
 
+    //Menu en el Action BAr
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_back,menu);
@@ -104,6 +111,7 @@ public class MapParkActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        //Al pulsar en opcion del action bar regresa a pantalla principal
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         return true;

@@ -62,6 +62,7 @@ public class TakePhotoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_take_photo);
 
+        //Recuperamos los elementos del layout
         btnTakePhoto = findViewById(R.id.btnTakePhoto);
         imageView = findViewById(R.id.imgView_takephoto);
 
@@ -105,6 +106,7 @@ public class TakePhotoActivity extends AppCompatActivity {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
+                    //SanckBar emergente nos indica que la foto se guardo en la galeria
                     Snackbar.make(imageView, R.string.img_added_to_galery,Snackbar.LENGTH_LONG).show();
                 }
             });
@@ -128,14 +130,20 @@ public class TakePhotoActivity extends AppCompatActivity {
         }
         return false;
     }
+    //Metodo para gaurdar la imagen tomada
     private void saveImage(Bitmap bitmap) throws IOException {
+        //Nombre del directorio
         String folderName = "Cars";
+        //Nombre de la imagen por fecha y hora
         String imageName = new SimpleDateFormat("ddMMyyyy_HHmm").format(new Date());
+        //Formato de la imagen
         String mimeType = "image/jpeg";
 
+        //Creamos elemento OutputStream (buffer) para pasar la imagen a bytes
         OutputStream fos;
-
+        //Depende de la version de Android del dispositivo
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            //Para versiones de Android 9+
             ContentResolver resolver = getContentResolver();
             ContentValues contentValues = new ContentValues();
             contentValues.put(MediaStore.Images.Media.DISPLAY_NAME, imageName);
@@ -148,6 +156,7 @@ public class TakePhotoActivity extends AppCompatActivity {
                     .getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM)
                     .toString() + File.separator + folderName;
 
+            //Crear el archivo de imagen
             File file = new File(imagesDir);
 
             if (!file.exists()) {
@@ -156,15 +165,20 @@ public class TakePhotoActivity extends AppCompatActivity {
                 }
             }
 
+            //Creamos archivo imagen con nombre y extension jpeg.
             File imageFile = new File(imagesDir, imageName + ".jpeg");
+            //Creamos el archivo imagen de bytes
             fos = new FileOutputStream(imageFile);
         }
+        //Comprimimos la iamgen a formato JPEG y calidad 100%
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+        //vacía el flujo de salida y fuerza la escritura de los bytes de salida almacenados en el buffer
         fos.flush();
+        //Cerramos el buffer
         fos.close();
     }
 
-
+    //Metodo de recepcion de solicitud de permisos
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -174,7 +188,7 @@ public class TakePhotoActivity extends AppCompatActivity {
             }
         }
     }
-
+    //Dialogos para solicitar permisos
     private void cargarDialogoRecomendacion() {
         AlertDialog.Builder dialogo = new AlertDialog.Builder(TakePhotoActivity.this);
         dialogo.setTitle(R.string.permissions_uncheked);
@@ -187,7 +201,7 @@ public class TakePhotoActivity extends AppCompatActivity {
         });
         dialogo.show();
     }
-
+    //Metodo toma la imagen
     private void takePhoto(){
         File fileImagen = new File(Environment.getExternalStorageDirectory(), RUTA_IMAGEN);
         boolean isCreada = fileImagen.exists();
@@ -202,6 +216,7 @@ public class TakePhotoActivity extends AppCompatActivity {
         File imagen = new File(path);
 
     }
+    //Menus en la Action Bar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_back, menu);
@@ -213,10 +228,12 @@ public class TakePhotoActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         if (item.getItemId() == R.id.actbar_back){
+            //Al pulsar en action bar vuelve a pantalla añadir vehiculo
             Intent intent = new Intent(this, AddCarActivity.class);
             startActivity(intent);
             return true;
         }else if(item.getItemId() == R.id.item_home){
+            //Al pulsar vuelve a la pantalla principal
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             return true;

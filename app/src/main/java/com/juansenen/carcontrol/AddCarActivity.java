@@ -53,6 +53,7 @@ public class AddCarActivity extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_car);
 
+        //Recuperamos los elementos del layout
         btnLoadImg = findViewById(R.id.btnCargarImg);
         imgCarga = findViewById(R.id.imagemId);
 
@@ -101,7 +102,7 @@ public class AddCarActivity extends AppCompatActivity implements View.OnClickLis
 
         }
     }
-
+    //Menu de la action bar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_back, menu);
@@ -114,14 +115,17 @@ public class AddCarActivity extends AppCompatActivity implements View.OnClickLis
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         if (item.getItemId() == R.id.actbar_photo) {
+            //Intent para ir a la Activity tomar foto
             Intent intent = new Intent(this, TakePhotoActivity.class);
             startActivity(intent);
             return true;
         }else if (item.getItemId() == R.id.actbar_back) {
+            //Intent para ir a la Activity principal(anterior)
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             return true;
         }else if(item.getItemId() == R.id.item_home){
+            //Intent para ir a la Activity principal
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             return true;
@@ -129,14 +133,16 @@ public class AddCarActivity extends AppCompatActivity implements View.OnClickLis
         return false;
     }
 
-
+    //Metodo al pulsar boton añadir
     public void butAdd(View view) {
 
+        //Recuperamos los elementos
         EditText ed_register = findViewById(R.id.edtxt_register);
         EditText ed_trdmark = findViewById(R.id.edtxt_trdmark);
         EditText ed_model = findViewById(R.id.edtxt_model);
         EditText ed_km = findViewById(R.id.edtxt_kms);
 
+        //Recuperamos los datos de los campos
         String register = ed_register.getText().toString();
         String trdmark = ed_trdmark.getText().toString();
         String model = ed_model.getText().toString();
@@ -147,24 +153,30 @@ public class AddCarActivity extends AppCompatActivity implements View.OnClickLis
             km = 0;
         }
 
+        //Creamos el objeto con los datos
         Cars car = new Cars(register, trdmark, model, year, km, pathReal);
+        //Añadimos al campo de la ruta de la imagen
         car.setImgPath(pathReal);
 
+        //Insertamos los datos en la BD
         final AppDatabase db = Room.databaseBuilder(this, AppDatabase.class, DATABASE_NAME)
                 .allowMainThreadQueries().build();
         db.carsDAO().insert(car);
 
+        //Elemento emergente que indica se ha añadido
         Toast.makeText(this, R.string.Added, Toast.LENGTH_SHORT).show();
+        //Ponemos los campos vacios
         ed_register.setText("");
         ed_trdmark.setText("");
         ed_model.setText("");
         editTFecha.setText("");
         ed_km.setText("");
+        //Levamos el foco al campo matricula
         ed_register.requestFocus();
 
 
     }
-
+    //Metodo para recibir el resultado en la propia activity y pintar la imagen en el campo ImageView
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -175,7 +187,7 @@ public class AddCarActivity extends AppCompatActivity implements View.OnClickLis
             savedImagen = new File(rutaImagen);
         }
     }
-
+    //Metodo para obener la ruta real a la imagen de la galeria a partir de su URI (dentificador uniforme de recursos)
     private String getRealPathFromURI(Uri path) {
         String result;
         Cursor cursor = getContentResolver().query(path, null, null,null,null );

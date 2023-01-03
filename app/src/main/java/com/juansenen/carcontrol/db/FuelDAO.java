@@ -13,18 +13,20 @@ import java.util.List;
 @Dao
 public interface FuelDAO {
 
+    //Obtener todos los repostajes por id
     @Query("SELECT * FROM repostajes WHERE idFuelCar = :matricula")
     List<Fuel>  getFuelByCar(String matricula);
 
+    //Obtener todos
     @Query("SELECT * FROM repostajes")
     List<Fuel> getAll();
-
+    //Añadir
     @Insert
     void insert(Fuel fuel);
-
+    //Borrar
     @Delete
     void delete(Fuel fuel);
-
+    //Actualizar
     @Update
     void update(Fuel fuel);
 

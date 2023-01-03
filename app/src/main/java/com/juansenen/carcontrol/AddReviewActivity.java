@@ -33,18 +33,22 @@ public class AddReviewActivity extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_review);
 
+        //Recuperamos de el vehiculo seleccionado en el adapter por su matricula
         Intent intent = getIntent();
         matricula = intent.getStringExtra("register");
         if (matricula == null)
             return;
         TextView txtregister = findViewById(R.id.txt_review_register);
+        //Pintamos la matricula en su campo
         txtregister.setText(matricula);
 
         editTFecha = findViewById(R.id.edt_addreview_date);
+        //Listener en el campo fecha para abrir DataPicker en caso de pulsarlo
         editTFecha.setOnClickListener(this);
 
     }
 
+    //Menus en la action bar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_back, menu);
@@ -53,12 +57,16 @@ public class AddReviewActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        //Al pulsar regresa a la pantalla anterior
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         return true;
     }
 
+    //Metodo al pulsar boton añadir revision
     public void butAddReview(View view) {
+
+        //Recuperamos elementos del layout
         TextView txtRegister = findViewById(R.id.txt_review_register);
         EditText edtReviewKm = findViewById(R.id.edt_addreview_km);
         EditText edtReviewPrice = findViewById(R.id.edt_addreview_price);
@@ -69,6 +77,7 @@ public class AddReviewActivity extends AppCompatActivity implements View.OnClick
         CheckBox chkReviewWheels = findViewById(R.id.chk_addreview_wheels);
         CheckBox chkReviewWipers = findViewById(R.id.chk_addreview_wipers);
 
+        //Recuperamos los datos
         String reviewRegister = txtRegister.getText().toString();
         String reviewDate = editTFecha.getText().toString();
         int reviewKm = Integer.parseInt(edtReviewKm.getText().toString());
@@ -80,17 +89,18 @@ public class AddReviewActivity extends AppCompatActivity implements View.OnClick
         boolean reviewWheels = chkReviewWheels.isChecked();
         boolean reviewWipers = chkReviewWipers.isChecked();
 
-        Reviews review = new Reviews(reviewRegister, reviewDate, reviewKm, reviewPrice, reviewOil,
-                reviewBrakes, reviewFreeze, reviewLiqBrakes, reviewWheels, reviewWipers);
-
+        //Creamos el obajeto revision
         Reviews reviews = new Reviews(reviewRegister, reviewDate, reviewKm, reviewPrice, reviewOil
                 , reviewBrakes, reviewFreeze, reviewLiqBrakes, reviewWheels, reviewWipers);
         final AppDatabase db = Room.databaseBuilder(this, AppDatabase.class, DATABASE_NAME)
                 .allowMainThreadQueries().build();
+        //Insertamos los datos en la BD
         db.reviewDAO().insert(reviews);
 
+        //Elemento emergente que indica se ha añadido la revision
         Toast.makeText(this, R.string.add, Toast.LENGTH_SHORT).show();
 
+        //Vaciamos los campos
         editTFecha.setText("");
         edtReviewKm.setText("");
         edtReviewPrice.setText("");

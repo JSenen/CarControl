@@ -32,6 +32,7 @@ public class DetailReviewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_review);
 
+        //Recuperamos el vehiculo por el campo register
         Intent intent = getIntent();
         matricula = intent.getStringExtra("register");
         if (matricula == null)
@@ -39,33 +40,42 @@ public class DetailReviewActivity extends AppCompatActivity {
         reviewsList = new ArrayList<>();
 
         TextView idCar = findViewById(R.id.reviews_idcar);
+        //Pintamos la matricula en el campo
         idCar.setText(matricula);
 
         final AppDatabase db = Room.databaseBuilder(this, AppDatabase.class, DATABASE_NAME)
                 .allowMainThreadQueries().build();
+        //Obtenemos los datos del vehiculo seleccionado
         reviewsList = db.reviewDAO().getReviewByCar(matricula);
 
+        //Recuperamos el RecyclerView
         RecyclerView recyclerView = findViewById(R.id.rcview_review_main);
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
+        //Creamos el adapter para el el RecyclerView
         reviewAdapter = new ReviewAdapter(this,reviewsList);
         recyclerView.setAdapter(reviewAdapter);
 
         registerForContextMenu(recyclerView);
     }
 
+    //Recuperamos datos al volver a la pantalla
     @Override
     protected void onResume() {
         super.onResume();
         final AppDatabase db = Room.databaseBuilder(this,AppDatabase.class,DATABASE_NAME)
                 .allowMainThreadQueries().build();
 
+        //Vaciamos los datos que hubiese
         reviewsList.clear();
+        //Añadimos los nuevos datos de la BD
         reviewsList.addAll(db.reviewDAO().getReviewByCar(matricula));
+        //Notificamos el cambio
         reviewAdapter.notifyDataSetChanged();
     }
 
+    //Menu en la action bar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_back,menu);
@@ -74,6 +84,7 @@ public class DetailReviewActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        //Volvemos a pantalla anterior al pulsar
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         return true;

@@ -32,6 +32,8 @@ public class AddFuelActivity extends AppCompatActivity implements View.OnClickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_fuel);
+
+        //Recuperamos de el vehiculo seleccionado en el adapter por su matricula
         Intent intent = getIntent();
         matricula = intent.getStringExtra("register");
         if (matricula == null)
@@ -39,6 +41,7 @@ public class AddFuelActivity extends AppCompatActivity implements View.OnClickLi
         TextView txtregister = findViewById(R.id.txt_addfuel_id);
         txtregister.setText(matricula);
 
+        //Lo obtenemos de la BD
         final AppDatabase db = Room.databaseBuilder(this,AppDatabase.class, DATABASE_NAME)
                 .allowMainThreadQueries().build();
         car = db.carsDAO().getByRegister(matricula);
@@ -47,9 +50,11 @@ public class AddFuelActivity extends AppCompatActivity implements View.OnClickLi
         editkm.setHint(String.valueOf(car.getKm()));
 
         editTextFecha = findViewById(R.id.edtxt_addfuel_date);
+        //Listener en el campo fecha para abrir DataPicker en caso de pulsarlo
         editTextFecha.setOnClickListener(this);
     }
 
+    //Metodo al pulsar en campo fecha para mostrar DataPicker
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -61,6 +66,7 @@ public class AddFuelActivity extends AppCompatActivity implements View.OnClickLi
         }
     }
 
+    //Menu en la action bar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_back,menu);
@@ -71,10 +77,12 @@ public class AddFuelActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.actbar_back){
+            //Regresa a la pantalla anterior
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             return true;
         }else if(item.getItemId() == R.id.item_home){
+            //Regresa a la pantalla principal
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             return true;
@@ -82,13 +90,17 @@ public class AddFuelActivity extends AppCompatActivity implements View.OnClickLi
 
         return false;
     }
+    //MEtodo al pulsar en el boton de registrar repostaje
     public void butaddfuel(View view){
 
+        //Obtenemos el vehiculo de la BD
         final AppDatabase db = Room.databaseBuilder(this,AppDatabase.class, DATABASE_NAME)
                 .allowMainThreadQueries().build();
         car = db.carsDAO().getByRegister(matricula);
 
+        //Recuperamos elementos del layout
         TextView txtregister = findViewById(R.id.txt_addfuel_id);
+        //Pintamos la matricula del vehiculo en su campo
         txtregister.setText(matricula);
         EditText edtlitre = findViewById(R.id.edtxt_addfuel_litres);
         EditText edtprice = findViewById(R.id.edtxt_addfuel_price);
@@ -101,6 +113,7 @@ public class AddFuelActivity extends AppCompatActivity implements View.OnClickLi
         float total = litre * price;
         String date = editTextFecha.getText().toString();
 
+        //Creamos el obajeto
         Fuel fuel = new Fuel(matricula, price, litre, km, date, total);
         //Añadir repostaje
         db.fuelDAO().insert(fuel);
@@ -108,12 +121,15 @@ public class AddFuelActivity extends AppCompatActivity implements View.OnClickLi
         car.setKm(km);
         db.carsDAO().update(car);
 
+        //Elemento emergente indica se ha grabado el repostaje
         Toast.makeText(this,R.string.add,Toast.LENGTH_SHORT).show();
 
+        //Vaciamos los campos
         edtlitre.setText("");
         edtprice.setText("");
         editkm.setHint(String.valueOf(car.getKm()));
         editTextFecha.setText("");
+        //Llevamos el foco al campo litros
         edtlitre.requestFocus();
     }
     //Mostrar Calendario al pulsar sobre edittext fecha

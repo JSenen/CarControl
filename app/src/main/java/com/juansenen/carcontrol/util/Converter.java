@@ -4,6 +4,8 @@ import androidx.room.TypeConverter;
 
 import java.sql.Date;
 
+
+//Creamos una clase conversor para convertir fechas de tipo TimeStamp a Date y viceversa
 public class Converter {
     public class Converters {
         @TypeConverter

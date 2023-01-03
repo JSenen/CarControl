@@ -22,12 +22,14 @@ public class FuelAdapter extends RecyclerView.Adapter<FuelAdapter.FuelHolder> {
         this.context = context;
         this.fuellist = fuelList;
     }
+    //Creamos ViewHolder e inicializamos campos del RecyclerView
     @Override
     public FuelAdapter.FuelHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.rcview_fuel_item, parent, false);
         return new FuelHolder(view);
     }
+    //Establecemos los datos sobre un Item del Recycler
     @Override
     public void onBindViewHolder(FuelAdapter.FuelHolder holder, int position) {
         holder.txtpricefuel.setText(String.valueOf(fuellist.get(position).getPrice()));
@@ -35,6 +37,8 @@ public class FuelAdapter extends RecyclerView.Adapter<FuelAdapter.FuelHolder> {
         holder.txtkm.setText(String.valueOf(fuellist.get(position).getKm()));
         holder.txttotal.setText(String.valueOf(fuellist.get(position).getTotal()));
     }
+
+    //Obtenemos el tamaño del listado
     @Override
     public int getItemCount() {
         return fuellist.size();
@@ -53,6 +57,7 @@ public class FuelAdapter extends RecyclerView.Adapter<FuelAdapter.FuelHolder> {
             super(view);
             parentview = view;
 
+            //Recuperamos los elementos del layout
             txtpricefuel = view.findViewById(R.id.rcw_itemfuel_price);
             txtlitrefuel = view.findViewById(R.id.rcw_itemfuel_litre);
             txtkm = view.findViewById(R.id.rcw_itemfuel_km);

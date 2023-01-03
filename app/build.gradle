@@ -4,11 +4,11 @@ plugins {
 
 android {
     namespace 'com.juansenen.carcontrol'
-    compileSdk 32
+    compileSdk 32 //Version de la compilacion
 
     defaultConfig {
         applicationId "com.juansenen.carcontrol"
-        minSdk 29
+        minSdk 29 //Minimo SDK para la configuracion
         targetSdk 32
         versionCode 1
         versionName "1.0"
@@ -31,19 +31,25 @@ android {
 }
 
 dependencies {
+
+    //Dependencia material design
     api 'com.google.android.material:material:1.8.0-alpha02'
     implementation 'com.google.android.material:material:1.7.0.'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.android.volley:volley:1.2.1'
     implementation 'com.google.code.gson:gson:2.9.0'
 
+    //Dependencia room
     implementation "androidx.room:room-runtime:2.4.3"
     annotationProcessor "androidx.room:room-compiler:2.4.3"
 
+    //Dependencia mapbox
     implementation 'com.mapbox.maps:android:10.9.1'
 
+    //Dependencia gps
     implementation("com.google.android.gms:play-services-location:18.0.0")
 
+    //Dependencia Loombok
     compileOnly "org.projectlombok:lombok:1.18.24"
     annotationProcessor "org.projectlombok:lombok:1.18.24"
 

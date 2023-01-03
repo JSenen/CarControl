@@ -57,23 +57,28 @@ public class UpdateCarActivity extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_car);
 
+        //Recuperamos el vehículo por el atributo register
         Intent intent = getIntent();
         matricula = intent.getStringExtra("register");
         if (matricula == null)
             return;
 
+        //Obtenemos vehículo de la BD
         final AppDatabase db = Room.databaseBuilder(this,AppDatabase.class,DATABASE_NAME)
                 .allowMainThreadQueries().build();
         car = db.carsDAO().getByRegister(matricula);
 
+        //Obtenemos los elementos del layout de la Activity
         txtRegister = findViewById(R.id.update_register);
         editTrade = findViewById(R.id.update_trademark);
         editModel = findViewById(R.id.update_model);
         editDate = findViewById(R.id.update_datebuy);
         editKm = findViewById(R.id.update_kms);
         imageCar = findViewById(R.id.imagemId_updatecar);
+        //Boton para caragr imagen de la galeria del dispositivo
         buttonCargarImg = findViewById(R.id.btnCargarImg_updateCar);
 
+        //Creamos un click listener para el boton cargar imagen
         buttonCargarImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,17 +86,21 @@ public class UpdateCarActivity extends AppCompatActivity implements View.OnClick
                     //Verifica permisos para Android 6.0+
                     checkStoragePermission();
                 }
+                //Lanzamos un intent para coger la imagen de la galeria
                 cameraLaunch.launch(new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI));
             }
         });
 
+        //Colocamos los datos del vehículo en los campos de texto
         txtRegister.setText(matricula);
         editTrade.setText(car.getTrademark());
         editModel.setText(car.getModel());
         editKm.setText(String.valueOf(car.getKm()));
+        //El campo de la imagen lo rellenamos con la URI de la imagen
         imageCar.setImageURI(Uri.parse(car.getImgPath()));
 
         editDate.setText(car.getYear());
+        //Listener en el campo fecha para abrir el fragment en caso de cambiar la fecha
         editDate.setOnClickListener(this);
 
     }
@@ -101,9 +110,13 @@ public class UpdateCarActivity extends AppCompatActivity implements View.OnClick
                 @Override
                 public void onActivityResult(ActivityResult result) {
                     if (result.getResultCode()==RESULT_OK){
+                        //Obtenemos el path de la imagen en la galeria
                         pathImagen = result.getData().getData();
+                        //Mostramos la imagen en el campo imagen
                         imageCar.setImageURI(pathImagen);
+                        //Obtenemos el path de la imagen
                         pathReal = getRealPathFromURI(pathImagen);
+                        //añadimos la ruta al campo de la BD
                         car.setImgPath(pathReal);
                     }
                 }
@@ -133,6 +146,7 @@ public class UpdateCarActivity extends AppCompatActivity implements View.OnClick
         }
         return result;
     }
+    //Menus en la action bar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_back,menu);
@@ -140,20 +154,23 @@ public class UpdateCarActivity extends AppCompatActivity implements View.OnClick
         return true;
     }
 
+    //Seleccion de opciones en la action bar
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == R.id.actbar_photo){
+            // Intent a la Activity para tomar foto
             Intent intent = new Intent(this, TakePhotoActivity.class);
             startActivity(intent);
             return true;
         }else if(item.getItemId() == R.id.actbar_back) {
+            // Intent a la Activity principal
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             return true;
         }
         return false;
     }
-
+    //Metodo al pulsar boton actualizar coche
     public void buttonUpdateCar(View view){
         car.setTrademark(editTrade.getText().toString());
         car.setModel(editModel.getText().toString());

@@ -37,8 +37,10 @@ public class LastParkActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_last_park);
 
+        //recuperamos los elementos del Layout
         mapView = findViewById(R.id.mapLastPark);
 
+        //Recuperamos los datos del vehiculo seleccionado
         Intent intent = getIntent();
         matricula = intent.getStringExtra("register");
         if (matricula == null)
@@ -46,11 +48,13 @@ public class LastParkActivity extends AppCompatActivity {
 
         final AppDatabase db = Room.databaseBuilder(this, AppDatabase.class, DATABASE_NAME)
                 .allowMainThreadQueries().build();
+        //Obentemos los datos de la BD por medio del campo relacionado matricula
         park = db.parkDAO().getLastPark(matricula);
 
         double latitude = park.getLatitude();
         double longitude = park.getLongitude();
 
+        //Metodos para colocar el marcador en el mapa segun los campos
         initializePointManager();
         setCameraPosition(latitude,longitude);
         addMarker(latitude,longitude);
@@ -63,6 +67,7 @@ public class LastParkActivity extends AppCompatActivity {
         pointAnnotationManager = PointAnnotationManagerKt.createPointAnnotationManager(annotationPlugin, annotationConfig);
 
     }
+    //Añadimos marcador en la ultima posicion
     private void addMarker(double latitude, double longitude) {
         PointAnnotationOptions pointAnnotationOptions = new PointAnnotationOptions()
                 .withPoint(Point.fromLngLat(longitude, latitude))
@@ -70,6 +75,7 @@ public class LastParkActivity extends AppCompatActivity {
 
         pointAnnotationManager.create(pointAnnotationOptions);
     }
+    //Configuramos la camara y como se visualiza
     private void setCameraPosition(double latitude, double longitude){
         CameraOptions cameraPosition = new CameraOptions.Builder()
                 .center(Point.fromLngLat(longitude, latitude))
@@ -80,7 +86,7 @@ public class LastParkActivity extends AppCompatActivity {
         mapView.getMapboxMap().setCamera(cameraPosition);
 
     }
-
+    //Menu en la action bar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_back,menu);
@@ -89,6 +95,7 @@ public class LastParkActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        //Al pulsar en menu action bar regresamos a la pantalla principal
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         return true;

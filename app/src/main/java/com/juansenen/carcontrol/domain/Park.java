@@ -6,8 +6,7 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
-import com.mapbox.geojson.Point;
-
+//Damos nombre a la tabla y establecemos la relación 1:M entre coches y esta
 @Entity(tableName = "parking",
         foreignKeys = @ForeignKey(entity = Cars.class,
                 parentColumns = "register",
@@ -19,6 +18,7 @@ public class Park {
     @NonNull
     public long id;
     @ColumnInfo
+    //Atributo mantiene la relacion entre las tablas
     public String idCarPark;
     @ColumnInfo
     public double latitude;

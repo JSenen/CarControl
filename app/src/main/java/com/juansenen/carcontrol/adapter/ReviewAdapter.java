@@ -25,13 +25,15 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewHold
         this.context = context;
     }
 
-
+    //Creamos ViewHolder e inicializamos campos del RecyclerView
     @Override
     public ReviewAdapter.ReviewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.rcview_review_item, parent, false);
         return new ReviewHolder(view);
     }
+
+    //Establecemos los datos sobre un Item del Recycler
     @Override
     public void onBindViewHolder(ReviewAdapter.ReviewHolder holder, int position) {
         holder.txtdate.setText(reviewsList.get(position).getFecha());
@@ -70,6 +72,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewHold
             super(view);
             parentview = view;
 
+            //Recuperamos los elementos del layout
             txtdate = view.findViewById(R.id.txt_review_item_date);
             txtkm = view.findViewById(R.id.txt_review_item_km);
             txtprice = view.findViewById(R.id.txt_review_item_price);
@@ -80,6 +83,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewHold
             chkFreeze = view.findViewById(R.id.chk_review_item_freeze);
             chkWipers = view.findViewById(R.id.chk_review_item_whaser);
 
+            //Los elementos checkbox los dejamos inactivos para que no puedan editarse
             chkOil.setEnabled(false);
             chkBrakes.setEnabled(false);
             chkLiquid.setEnabled(false);

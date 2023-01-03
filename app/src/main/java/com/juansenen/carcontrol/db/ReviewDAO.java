@@ -13,18 +13,19 @@ import java.util.List;
 @Dao
 public interface ReviewDAO {
 
+    //Obtener por id
     @Query("SELECT * FROM revisiones WHERE idReviewCar = :matricula")
     List<Reviews> getReviewByCar(String matricula);
-
+    //Obtener todos
     @Query("SELECT * FROM revisiones")
     List<Reviews> getAll();
-
+    //Añadir
     @Insert
     void insert(Reviews review);
-
+    //Borrar
     @Delete
     void delete(Reviews review);
-
+    //Actualizar
     @Update
     void update(Reviews review);
 

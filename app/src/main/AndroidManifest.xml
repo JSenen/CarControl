@@ -23,6 +23,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CarControl"
         tools:targetApi="31">
+        <!--Activitys o pantallas de la app -->
         <activity
             android:name=".TakePhotoActivity"
             android:exported="false">
@@ -93,6 +94,7 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+        <!-- ACtivity principal. Primera que se muestra -->
         <activity
             android:name=".MainActivity"
             android:exported="true">

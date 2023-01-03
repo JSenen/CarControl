@@ -7,7 +7,7 @@ import androidx.room.ForeignKey;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
-
+//Damos nombre a la tabla y creamos la relación 1:M entre Cars y esta
 @Entity(tableName = "revisiones",
         foreignKeys = @ForeignKey(entity = Cars.class,
                 parentColumns = "register",
@@ -18,6 +18,7 @@ public class Reviews {
     @NonNull
     public long id;
     @ColumnInfo
+    //Atributo mantiene la relación entre las tablas
     public String idReviewCar;
     @ColumnInfo
     public String fecha;

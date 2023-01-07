@@ -1,3 +1,47 @@
 <resources>
     <string name="app_name">CarControl</string>
+    <string name="add">Added</string>
+    <string name="fuel_list">Fuel List</string>
+    <string name="last_parking">Parking</string>
+    <string name="oil">Oil</string>
+    <string name="brakes">Brakes</string>
+    <string name="Brake_liquid">Brake Liquid</string>
+    <string name="wheels">Wheels</string>
+    <string name="antifreeze">Antifreeze</string>
+    <string name="wipers">Wiperss</string>
+    <string name="list_reviews">Reviews</string>
+    <string name="maps">Maps</string>
+    <string name="save_position">Location saved</string>
+    <string name="registercar">Register</string>
+    <string name="addnow">Add</string>
+    <string name="km">Km</string>
+    <string name="Added">Added</string>
+    <string name="model">Model</string>
+    <string name="date">Date</string>
+    <string name="trademark">Trademark</string>
+    <string name="price">Price</string>
+    <string name="Litres">Liters</string>
+    <string name="litre_price">Price / Liter</string>
+    <string name="delete">Delete</string>
+    <string name="modify">Modify</string>
+    <string name="dialog_delete">Sure to delete</string>
+    <string name="dialog_eliminated">Was delete</string>
+    <string name="delete_car_question">Do you want to delete the car?</string>
+    <string name="delete_car">Delete car</string>
+    <string name="do_it">Ok</string>
+    <string name="cancel">Cancelr</string>
+    <string name="Update">Update</string>
+    <string name="Updated">Updated</string>
+    <string name="Modify_car_question">Do you want to modify the car?</string>
+    <string name="update_car_dialog_yes">Okr</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="select_img">Select picture</string>
+    <string name="manage_img">Manage picture</string>
+    <string name="select_img_app">Select app pictures</string>
+    <string name="take_photo">Take photo</string>
+    <string name="img_added_to_galery">Photo added to gallery</string>
+    <string name="permissions_uncheked">Permissions uncheked</string>
+    <string name="Check_permissions_for_use_app">Accept permissions to make app go</string>
+    <string name="accept">Accept</string>
 </resources>

@@ -55,7 +55,9 @@ Las funciones de la aplicación son las siguientes.
 
 6.- PANTALLA PARKING.
     El usuario puede marcar su posición en el momento de aparcar el vehículo, y asi poder localizarlo 
-    al ir a recogerlo mediante la siguiente función que se lo facilita.
+    al ir a recogerlo mediante la siguiente función que se lo facilita. La posición del aparcamiento viene
+    indicada por la última posición del dispositivo (GPS) o si lo desea el usuario, el mismo puede puntear 
+    en el mapa donde desea posicionarla.
 
 7.- PANTALLA LISTADO REPOSTAJES
     Nos ofrece un listado de todos los repostajes realizados
@@ -97,7 +99,7 @@ alguna acción de utilidad para la aplicación ✅
 por ejemplo) ✅
 7. Utiliza la herramienta Git (y GitHub) durante todo el desarrollo de la aplicación.
 Utiliza el gestor de Issues para los problemas/fallos que vayan surgiendo ✅
-8. Utilizar el GPS del dispositivo para realizar alguna función sobre el mapa
+8. Utilizar el GPS del dispositivo para realizar alguna función sobre el mapa ✅
 9. Añadir un menú de preferencias con al menos 3 opciones que modifiquen el
    comportamiento de la aplicación. Este menú estará siempre disponible en el
    ActionBar

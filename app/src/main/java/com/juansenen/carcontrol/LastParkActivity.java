@@ -80,7 +80,7 @@ public class LastParkActivity extends AppCompatActivity {
         CameraOptions cameraPosition = new CameraOptions.Builder()
                 .center(Point.fromLngLat(longitude, latitude))
                 .pitch(45.0)
-                .zoom(15.5)
+                .zoom(7.5)
                 .bearing(-17.6)
                 .build();
         mapView.getMapboxMap().setCamera(cameraPosition);

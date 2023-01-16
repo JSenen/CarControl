@@ -100,9 +100,7 @@ public class GPSActivity extends AppCompatActivity implements Style.OnStyleLoade
 
     @Override
     public void onStyleLoaded(@NonNull Style style) {
-        for (Park place : places) {
-            addMarker(place.getLatitude(), place.getLongitude());
-        }
+        addMarker(latitude,longitude);
         gps();
     }
 
@@ -153,7 +151,7 @@ public class GPSActivity extends AppCompatActivity implements Style.OnStyleLoade
     private void addMarker(double latitude, double longitude) {
         PointAnnotationOptions pointAnnotationOptions = new PointAnnotationOptions()
                 .withPoint(Point.fromLngLat(longitude,latitude))
-                .withIconImage(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_parking_foreground));
+                .withIconImage(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_gps_marker_foreground));
 
         pointAnnotationManager.create(pointAnnotationOptions);
     }

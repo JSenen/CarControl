@@ -140,7 +140,7 @@ public class GPSActivity extends AppCompatActivity implements Style.OnStyleLoade
     private void setCameraPosition(double latitude, double longitude){
         CameraOptions cameraPosition = new CameraOptions.Builder()
                 .center(Point.fromLngLat(longitude,latitude))
-                .pitch(45.0)
+                .pitch(60.0)
                 .zoom(9.1)
                 .bearing(-17.6)
                 .build();

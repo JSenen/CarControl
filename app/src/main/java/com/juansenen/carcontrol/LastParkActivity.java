@@ -79,8 +79,8 @@ public class LastParkActivity extends AppCompatActivity {
     private void setCameraPosition(double latitude, double longitude){
         CameraOptions cameraPosition = new CameraOptions.Builder()
                 .center(Point.fromLngLat(longitude, latitude))
-                .pitch(45.0)
-                .zoom(7.5)
+                .pitch(60.0)
+                .zoom(10.5)
                 .bearing(-17.6)
                 .build();
         mapView.getMapboxMap().setCamera(cameraPosition);

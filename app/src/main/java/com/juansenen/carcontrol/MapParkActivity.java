@@ -150,7 +150,7 @@ public class MapParkActivity extends AppCompatActivity implements Style.OnStyleL
     private void addMarketGPS(double latitude, double longitude) {
         PointAnnotationOptions pointAnnotationOptions = new PointAnnotationOptions()
                 .withPoint(Point.fromLngLat(longitude,latitude))
-                .withIconImage(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_parking_foreground));
+                .withIconImage(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_gps_marker_foreground));
 
         pointAnnotationManager.create(pointAnnotationOptions);
     }

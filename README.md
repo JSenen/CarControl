@@ -103,7 +103,7 @@ Utiliza el gestor de Issues para los problemas/fallos que vayan surgiendo ✅
 9. Añadir un menú de preferencias con al menos 3 opciones que modifiquen el
    comportamiento de la aplicación. Este menú estará siempre disponible en el
    ActionBar
-10. Diseñar algunos layouts para otras posiciones de la pantalla (portrait/landscape)
+10. Diseñar algunos layouts para otras posiciones de la pantalla (portrait/landscape)✅
 11. Utilizar imágenes como atributos de algún objeto (y almacenarlo en la base de
    datos) ✅
 12. Emplear Fragments en el diseño de alguna de las Activities de la aplicación ✅

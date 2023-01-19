@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddCarActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="340dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imagemId"
+                android:layout_width="match_parent"
+                android:layout_height="197dp"
+                android:layout_below="@+id/textView"
+                android:layout_alignEnd="@+id/textView"
+                android:layout_alignRight="@+id/textView"
+                android:layout_gravity="center"
+                android:src="@drawable/img_base" />
+
+            <Button
+                android:id="@+id/btnCargarImg"
+                android:layout_width="173dp"
+                android:layout_height="48dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:gravity="center|center_horizontal|center_vertical"
+                android:onClick="onclick"
+                android:text="@string/select_img"
+                android:textColor="#ffff"
+                android:textSize="10sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="479dp"
+            android:layout_height="400dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:orientation="vertical"
+            android:paddingTop="10dp"
+            android:paddingEnd="10dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtxt_register"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/registercar" />
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtxt_trdmark"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/trademark" />
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtxt_model"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/model" />
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtxt_year"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="false"
+                android:hint="@string/date"
+                android:inputType="date" />
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtxt_kms"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/km" />
+
+            <Button
+                android:id="@+id/butAdd"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:onClick="butAdd"
+                android:text="@string/addnow"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/name_layout" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
